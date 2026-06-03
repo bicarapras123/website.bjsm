@@ -52,125 +52,114 @@
         </div>
     </section>
 
-    <!-- PACKAGES SECTION (HIGHLY SPECIFIED & COMPREHENSIVE) -->
+    <!-- PACKAGES SECTION (DIUBAH MENJADI MENGALIR KE BAWAH / HORIZONTAL LIST AGAR SEIMBANG DENGAN JUMLAH 5 PAKET) -->
     <section id="packages" class="py-24 sm:py-36 bg-slate-100 scroll-mt-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16 sm:mb-24" data-aos="fade-up">
-                <span class="text-xs font-bold text-emerald-700 uppercase tracking-[0.25em] block mb-3">All-In Custom Solutions</span>
-                <h2 class="text-2xl sm:text-5xl font-black text-slate-900 uppercase tracking-wider font-luxury-title">Paket Layanan Integrasi</h2>
+                <span class="text-xs font-bold text-emerald-700 uppercase tracking-[0.25em] block mb-3">All-In Corporate Pricing</span>
+                <h2 class="text-2xl sm:text-5xl font-black text-slate-900 uppercase tracking-wider font-luxury-title">Paket Layanan Rapat</h2>
                 <div class="h-[2px] w-20 bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto mt-6"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+            <!-- List Layout Horizontal Premium Stack -->
+            <div class="space-y-6">
                 
-                <!-- PACK 1: CORPORATE SUMMIT PACK -->
-                <div class="border border-slate-200 rounded-2xl p-6 sm:p-8 bg-white shadow-xl flex flex-col justify-between relative group hover:border-emerald-600/30 transition duration-500"
-                     data-aos="slide-up" data-aos-delay="100">
-                    <div>
-                        <h4 class="text-slate-900 font-bold text-lg uppercase tracking-wider font-luxury-title">Corporate Summit Pack</h4>
-                        <p class="text-slate-500 text-xs mt-2 font-light">Paket integrasi rapat korporasi eksklusif berorientasi kenyamanan penuh.</p>
-                        
-                        <div class="mt-8 space-y-6 border-t border-slate-100 pt-6">
-                            <div>
-                                <h5 class="text-[10px] font-bold text-emerald-700 uppercase tracking-widest mb-2">Spatial & Environment</h5>
-                                <ul class="space-y-2 text-xs text-slate-600 font-medium">
-                                    <li class="flex items-start"><span class="text-emerald-600 mr-2">✓</span><span>Sewa Summit Executive Suite s.d 8 Jam (Full Day Session)</span></li>
-                                    <li class="flex items-start"><span class="text-emerald-600 mr-2">✓</span><span>Sistem tata meja modular (Boardroom, U-Shape, atau Classroom)</span></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h5 class="text-[10px] font-bold text-emerald-700 uppercase tracking-widest mb-2">Technology & Infrastructure</h5>
-                                <ul class="space-y-2 text-xs text-slate-600 font-medium">
-                                    <li class="flex items-start"><span class="text-emerald-600 mr-2">✓</span><span>Internet Dedicated High-Speed up to 100 Mbps (LAN & Wi-Fi)</span></li>
-                                    <li class="flex items-start"><span class="text-emerald-600 mr-2">✓</span><span>Smartboard AI Interaktif, Proyektor Laser 5.000 Lumens, & 2 Wireless Mic</span></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h5 class="text-[10px] font-bold text-emerald-700 uppercase tracking-widest mb-2">F&B Hospitality</h5>
-                                <ul class="space-y-2 text-xs text-slate-600 font-medium">
-                                    <li class="flex items-start"><span class="text-emerald-600 mr-2">✓</span><span>2x Coffee Break (3 pilihan varian pastry & brewed coffee/tea)</span></li>
-                                    <li class="flex items-start"><span class="text-emerald-600 mr-2">✓</span><span>1x Lunch / Dinner Premium Buffet dengan menu Nusantara & Western</span></li>
-                                </ul>
-                            </div>
+                <!-- 1. PAKET SMALL MEETING -->
+                <div class="border border-slate-200 rounded-2xl p-6 sm:p-8 bg-white shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-emerald-600/30 transition duration-300 relative group"
+                     data-aos="fade-up" data-aos-delay="100">
+                    <div class="space-y-2">
+                        <h4 class="text-slate-900 font-bold text-lg uppercase tracking-wider font-luxury-title group-hover:text-emerald-700 transition">Paket Small Meeting</h4>
+                        <p class="text-slate-500 text-xs font-light max-w-xl">Dioptimalkan secara eksklusif untuk kebutuhan rapat koordinasi internal, presentasi proyek strategis, atau diskusi direksi skala kecil dengan fleksibilitas layout ruang kerja.</p>
+                        <div class="flex flex-wrap gap-x-4 gap-y-1 pt-2 text-[11px] text-slate-400 font-medium">
+                            <span>✓ Standard Audio System</span>
+                            <span>✓ High-Speed Wi-Fi</span>
+                            <span>✓ Mineral Water & Notes</span>
                         </div>
                     </div>
-                    <div class="mt-10 border-t border-slate-100 pt-6">
-                        <span class="block text-slate-400 text-[9px] font-bold uppercase tracking-widest">Investasi Mulai</span>
-                        <span class="text-2xl font-bold text-emerald-800 font-luxury-title">Rp 350.000</span> <span class="text-xs text-slate-500">/ Pax</span>
+                    <div class="text-left md:text-right shrink-0 border-t md:border-t-0 md:border-l border-slate-100 pt-4 md:pt-0 md:pl-8 min-w-[160px]">
+                        <span class="block text-slate-400 text-[9px] font-bold uppercase tracking-widest">Investasi Paket</span>
+                        <span class="text-2xl font-bold text-emerald-800 font-luxury-title">Rp 250.000</span> <span class="text-xs text-slate-500">/ Pax</span>
                     </div>
                 </div>
 
-                <!-- PACK 2: ROYAL WEDDING PACKAGE -->
-                <div class="border-2 border-amber-500 rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-emerald-900 via-slate-900 to-emerald-950 text-white shadow-2xl flex flex-col justify-between relative mt-4 md:mt-0"
-                     data-aos="slide-up" data-aos-delay="200">
-                    <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 text-[9px] font-black uppercase px-5 py-1.5 rounded-full tracking-widest shadow-lg whitespace-nowrap">The Imperial Signature</span>
-                    <div>
-                        <h4 class="text-amber-400 font-bold text-xl uppercase tracking-wider font-luxury-title">Royal Wedding Package</h4>
-                        <p class="text-slate-300 text-xs mt-2 font-light">Mewujudkan pernikahan megah impian dengan tata kelola bintang lima.</p>
-                        
-                        <div class="mt-8 space-y-6 border-t border-white/5 pt-6">
-                            <div>
-                                <h5 class="text-[10px] font-bold text-amber-400 uppercase tracking-widest mb-2">Spatial & Luxury Decor</h5>
-                                <ul class="space-y-2 text-xs text-slate-200 font-light">
-                                    <li class="flex items-start"><span class="text-amber-400 mr-2">✓</span><span>Eksklusivitas Grand Ballroom s.d 6 Jam (Persiapan AC & Hias H-1)</span></li>
-                                    <li class="flex items-start"><span class="text-amber-400 mr-2">✓</span><span>Dekorasi Pelaminan Megah 12 Meter & Lorong Karpet Grand Entrance</span></li>
-                                    <li class="flex items-start"><span class="text-amber-400 mr-2">✓</span><span>Free 1 Kamar Executive Suite & 2 Kamar Deluxe (Transit Keluarga)</span></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h5 class="text-[10px] font-bold text-amber-400 uppercase tracking-widest mb-2">Stage, Audio & Multimedia</h5>
-                                <ul class="space-y-2 text-xs text-slate-200 font-light">
-                                    <li class="flex items-start"><span class="text-amber-400 mr-2">✓</span><span>Layar Utama LED Wall Modular 4x8m Ultra-HD 4K Terintegrasi</span></li>
-                                    <li class="flex items-start"><span class="text-amber-400 mr-2">✓</span><span>Sound System Concert Line Array up to 15.000 Watt & Stage Lighting</span></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h5 class="text-[10px] font-bold text-amber-400 uppercase tracking-widest mb-2">Gastronomy & Banquet</h5>
-                                <ul class="space-y-2 text-xs text-slate-200 font-light">
-                                    <li class="flex items-start"><span class="text-amber-400 mr-2">✓</span><span>Pilihan Katering Menu Premium Internasional Komplit untuk 1.000 Pax</span></li>
-                                    <li class="flex items-start"><span class="text-amber-400 mr-2">✓</span><span>Food Tasting untuk 10 Pax & Keluarga Meja VIP dengan Pelayanan Dedicated</span></li>
-                                </ul>
-                            </div>
+                <!-- 2. PAKET HALF DAY MEETING -->
+                <div class="border border-slate-200 rounded-2xl p-6 sm:p-8 bg-white shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-emerald-600/30 transition duration-300 relative group"
+                     data-aos="fade-up" data-aos-delay="150">
+                    <div class="space-y-2">
+                        <h4 class="text-slate-900 font-bold text-lg uppercase tracking-wider font-luxury-title group-hover:text-emerald-700 transition">Paket Half Day Meeting</h4>
+                        <p class="text-slate-500 text-xs font-light max-w-xl">Alokasi sewa ruangan rapat terintegrasi dengan durasi maksimal hingga 4 Jam. Sudah termasuk penyediaan hospitality session berupa 1x Coffee Break premium berisikan aneka pastry segar pilihan.</p>
+                        <div class="flex flex-wrap gap-x-4 gap-y-1 pt-2 text-[11px] text-slate-400 font-medium">
+                            <span>✓ Akses Ruang 4 Jam</span>
+                            <span>✓ 1x Coffee Break Premium</span>
+                            <span>✓ LED Wall / Projector Support</span>
                         </div>
                     </div>
-                    <div class="mt-10 border-t border-white/5 pt-6">
-                        <span class="block text-amber-400 text-[9px] font-bold uppercase tracking-widest">Konfirmasi Harga</span>
-                        <span class="text-2xl font-bold text-amber-400 font-luxury-title">Hubungi Kami</span>
+                    <div class="text-left md:text-right shrink-0 border-t md:border-t-0 md:border-l border-slate-100 pt-4 md:pt-0 md:pl-8 min-w-[160px]">
+                        <span class="block text-slate-400 text-[9px] font-bold uppercase tracking-widest">Investasi Paket</span>
+                        <span class="text-2xl font-bold text-emerald-800 font-luxury-title">Rp 250.000</span> <span class="text-xs text-slate-500">/ Pax</span>
                     </div>
                 </div>
 
-                <!-- PACK 3: GRAND EXHIBITION PACK -->
-                <div class="border border-slate-200 rounded-2xl p-6 sm:p-8 bg-white shadow-xl flex flex-col justify-between relative group hover:border-emerald-600/30 transition duration-300 md:col-span-2 lg:col-span-1"
-                     data-aos="slide-up" data-aos-delay="300">
-                    <div>
-                        <h4 class="text-slate-900 font-bold text-lg uppercase tracking-wider font-luxury-title">Grand Exhibition Pack</h4>
-                        <p class="text-slate-500 text-xs mt-2 font-light">Sistem operasional eksibisi pameran dagang masif dengan pasokan daya tinggi.</p>
-                        
-                        <div class="mt-8 space-y-6 border-t border-slate-100 pt-6">
-                            <div>
-                                <h5 class="text-[10px] font-bold text-emerald-700 uppercase tracking-widest mb-2">Industrial Spatial Logistik</h5>
-                                <ul class="space-y-2 text-xs text-slate-600 font-medium">
-                                    <li class="flex items-start"><span class="text-emerald-600 mr-2">✓</span><span>Sewa Penuh Lantai Metropolitan Exhibition Hall (Siklus 24 Jam Penuh)</span></li>
-                                    <li class="flex items-start"><span class="text-emerald-600 mr-2">✓</span><span>Jalur Bebas Loading Barang Berat Malam Hari (Tinggi Pintu Akses 4.5m)</span></li>
-                                    <li class="flex items-start"><span class="text-emerald-600 mr-2">✓</span><span>Fasilitas Pre-Function Foyer Luas Khusus Registrasi & Tiketing</span></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h5 class="text-[10px] font-bold text-emerald-700 uppercase tracking-widest mb-2">Engineering & Security Power</h5>
-                                <ul class="space-y-2 text-xs text-slate-600 font-medium">
-                                    <li class="flex items-start"><span class="text-emerald-600 mr-2">✓</span><span>Alokasi Distribusi Panel Listrik 3-Phase Kapasitas Daya Tinggi Cadangan</span></li>
-                                    <li class="flex items-start"><span class="text-emerald-600 mr-2">✓</span><span>Sinkronisasi Otomatis Listrik Genset Ganda 100% Khusus Event Industri</span></li>
-                                    <li class="flex items-start"><span class="text-emerald-600 mr-2">✓</span><span>Sistem Pengamanan Security Internal & Tim Kebersihan Siaga 24 Jam</span></li>
-                                </ul>
-                            </div>
+                <!-- 3. PAKET FULL DAY MEETING (HIGHLIGHTED / BERDINDING AMBER) -->
+                <div class="border-2 border-amber-500 rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 text-white shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative"
+                     data-aos="fade-up" data-aos-delay="200">
+                    <span class="absolute -top-3 left-6 bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 text-[9px] font-black uppercase px-4 py-1 rounded-full tracking-widest shadow-md">Most Popular Option</span>
+                    <div class="space-y-2">
+                        <h4 class="text-amber-400 font-bold text-lg uppercase tracking-wider font-luxury-title">Paket Full Day Meeting</h4>
+                        <p class="text-slate-300 text-xs font-light max-w-xl">Solusi rapat korporat penuh sepanjang hari dengan durasi hingga 8 Jam. Dirancang komprehensif berfasilitas kuliner lengkap mencakup sajian 2x Coffee Break serta 1x Lunch / Dinner tipe prasmanan (Buffet).</p>
+                        <div class="flex flex-wrap gap-x-4 gap-y-1 pt-2 text-[11px] text-amber-400/70 font-medium">
+                            <span>✓ Akses Ruang 8 Jam</span>
+                            <span>✓ 2x Coffee Break Session</span>
+                            <span>✓ 1x Lunch / Dinner Buffet</span>
                         </div>
                     </div>
-                    <div class="mt-10 border-t border-slate-100 pt-6">
-                        <span class="block text-slate-400 text-[9px] font-bold uppercase tracking-widest">Investasi Mulai</span>
-                        <span class="text-2xl font-bold text-emerald-800 font-luxury-title">Rp 75 Juta</span> <span class="text-xs text-slate-400">/ Hari</span>
+                    <div class="text-left md:text-right shrink-0 border-t border-white/5 md:border-t-0 md:border-l md:border-white/10 pt-4 md:pt-0 md:pl-8 min-w-[160px]">
+                        <span class="block text-amber-400 text-[9px] font-bold uppercase tracking-widest">Investasi Paket</span>
+                        <span class="text-2xl font-bold text-amber-400 font-luxury-title">Rp 250.000</span> <span class="text-xs text-slate-300">/ Pax</span>
                     </div>
                 </div>
-            </div>
+
+                <!-- 4. PAKET FULLBOARD MEETING -->
+                <div class="border border-slate-200 rounded-2xl p-6 sm:p-8 bg-white shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-emerald-600/30 transition duration-300 relative group"
+                     data-aos="fade-up" data-aos-delay="250">
+                    <div class="space-y-2">
+                        <h4 class="text-slate-900 font-bold text-lg uppercase tracking-wider font-luxury-title group-hover:text-emerald-700 transition">Paket Fullboard Meeting</h4>
+                        <p class="text-slate-500 text-xs font-light max-w-xl">Paket integrasi rapat intensif berskala masif. Menggabungkan penyediaan fasilitas ruang pertemuan utama, konsumsi F&B hospitality harian komplit, serta integrasi pemesanan kamar kamar menginap (Akomodasi) untuk peserta.</p>
+                        <div class="flex flex-wrap gap-x-4 gap-y-1 pt-2 text-[11px] text-slate-400 font-medium">
+                            <span>✓ Paket Rapat Intensif</span>
+                            <span>✓ Full F&B Catering Integration</span>
+                            <span>✓ Room Accommodation Ready</span>
+                        </div>
+                    </div>
+                    <div class="text-left md:text-right shrink-0 border-t md:border-t-0 md:border-l border-slate-100 pt-4 md:pt-0 md:pl-8 min-w-[160px]">
+                        <span class="block text-slate-400 text-[9px] font-bold uppercase tracking-widest">Investasi Paket</span>
+                        <span class="text-2xl font-bold text-emerald-800 font-luxury-title">Rp 250.000</span> <span class="text-xs text-slate-500">/ Pax</span>
+                    </div>
+                </div>
+
+                <!-- 5. PAKET CONVENTION CENTRE (CUSTOM) -->
+                <div class="border border-slate-200 rounded-2xl p-6 sm:p-8 bg-white shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-amber-500/30 transition duration-300 relative group"
+                     data-aos="fade-up" data-aos-delay="300">
+                    <div class="space-y-2">
+                        <h4 class="text-slate-900 font-bold text-lg uppercase tracking-wider font-luxury-title group-hover:text-amber-600 transition">Paket Convention Centre (Custom)</h4>
+                        <p class="text-slate-500 text-xs font-light max-w-xl">Penyewaan hall utama skala megah untuk penyelenggaraan agenda masif seperti wisuda universitas, pameran industri dagang (Exhibition), pertunjukan seni, konser musik, ataupun konfigurasi tata panggung berskala besar.</p>
+                        <div class="flex flex-wrap gap-x-4 gap-y-1 pt-2 text-[11px] text-slate-400 font-medium">
+                            <span>✓ Kuota Kapasitas Ribuan Pax</span>
+                            <span>✓ Fleksibilitas Tinggi Tata Panggung</span>
+                            <span>✓ Alokasi Kelistrikan 3-Phase Cadangan</span>
+                        </div>
+                    </div>
+                    <div class="text-left md:text-right shrink-0 border-t md:border-t-0 md:border-l border-slate-100 pt-4 md:pt-0 md:pl-8 min-w-[160px] bg-amber-50/40 p-4 rounded-xl md:bg-transparent md:p-0">
+                        <span class="block text-amber-600 text-[9px] font-bold uppercase tracking-widest">Skema Investasi</span>
+                        <span class="text-xl font-bold text-amber-600 font-luxury-title uppercase tracking-wide">Hubungi Admin</span>
+                    </div>
+                </div>
+
+            </div> <!-- End Stack List -->
+            
+            <p class="text-center text-[11px] text-slate-400 italic mt-8">
+                * Catatan: Harga flat Rp 250.000/pax di atas merupakan harga dasar penawaran sewa ruangan rapat (belum termasuk pengenaan pajak PPN pemerintah).
+            </p>
         </div>
     </section>
 

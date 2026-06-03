@@ -1,9 +1,9 @@
-<nav x-data="{ open: false }" class="bg-slate-900 text-slate-300 w-full md:w-64 md:fixed md:top-0 md:bottom-0 md:left-0 flex flex-col z-40 shadow-xl border-r border-slate-800">
+\<nav x-data="{ open: false }" class="bg-slate-900 text-slate-300 w-full md:w-64 md:fixed md:top-0 md:bottom-0 md:left-0 flex flex-col z-40 shadow-xl border-r border-slate-800">
     
     <div class="flex items-center justify-between h-16 px-6 border-b border-slate-800 shrink-0 bg-slate-950">
         <a href="{{ route('dashboard') }}" class="flex items-center gap-2">
             <x-application-logo class="block h-8 w-auto fill-current text-white" />
-            <span class="font-bold text-lg text-white tracking-wider">ADMIN</span>
+            <span class="font-bold text-lg text-white tracking-wider">DASHBOARD</span>
         </a>
 
         <button @click="open = ! open" class="md:hidden p-2 rounded-md text-slate-400 hover:bg-slate-800 hover:text-white focus:outline-none transition">
@@ -23,10 +23,17 @@
                 <svg class="w-5 h-5 me-3 shrink-0 transition {{ request()->routeIs('dashboard') ? 'text-indigo-400' : 'text-slate-450 text-slate-400 group-hover:text-slate-200' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4zM14 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2v-4z"/>
                 </svg>
-                <span>{{ __('Dashboard') }}</span>
+                <span>{{ __('Pemesanan Venue') }}</span>
             </x-nav-link>
 
-            </div>
+            <x-nav-link :href="route('venue.create')" :active="request()->routeIs('venue.create')">
+                <svg class="w-5 h-5 me-3 shrink-0 transition {{ request()->routeIs('venue.create') ? 'text-indigo-400' : 'text-slate-400 group-hover:text-slate-200' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{{ __('Input Booking Venue') }}</span>
+            </x-nav-link>
+
+        </div>
 
         <div class="p-4 border-t border-slate-800 bg-slate-950/50">
             <x-dropdown align="top" width="48">

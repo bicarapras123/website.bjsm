@@ -5,6 +5,8 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\RoomsController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\VenueBookingController; // Controller Pemesanan Venue Baru
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,7 +19,7 @@ Route::get('/rooms', [RoomsController::class, 'rooms'])->name('rooms.index');
 // Halaman Baru: Katalog Paket Sewa Eksklusif
 Route::get('/packages', [PackagesController::class, 'packages'])->name('packages.index');
 
-// Halamab Baru: Contact
+// Halaman Baru: Contact
 Route::get('/contacts', [ContactController::class, 'contacts'])->name('contacts.index');
 
 // =========================================================================
@@ -38,12 +40,24 @@ Route::get('/booking/success', [BookingController::class, 'success'])->name('boo
 
 
 // =========================================================================
-// RUTE PRIVATE (WAJIB LOGIN)
+// RUTE PRIVATE (WAJIB LOGIN) - MANAGEMENT ADMIN & VENUE BOOKING
 // =========================================================================
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    
+    // 1. Dashboard Utama & Update Status
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::patch('/dashboard/booking/{id}/status', [DashboardController::class, 'updateStatus'])->name('dashboard.updateStatus');
 
+    // 2. Fitur Input Pemesanan Venue Baru (Data Sederhana + Live Search + Kirim Gmail)
+    Route::get('/venue-booking/create', [VenueBookingController::class, 'create'])->name('venue.create');
+    Route::post('/venue-booking/store', [VenueBookingController::class, 'store'])->name('venue.store');
+    Route::get('/venue-booking/search-customer', [VenueBookingController::class, 'searchCustomer'])->name('venue.searchCustomer');
+    
+});
+
+// =========================================================================
+// RUTE MANAGEMENT PROFILE
+// =========================================================================
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
