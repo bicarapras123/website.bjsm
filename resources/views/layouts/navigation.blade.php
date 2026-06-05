@@ -1,8 +1,8 @@
-\<nav x-data="{ open: false }" class="bg-slate-900 text-slate-300 w-full md:w-64 md:fixed md:top-0 md:bottom-0 md:left-0 flex flex-col z-40 shadow-xl border-r border-slate-800">
+<nav x-data="{ open: false }" class="bg-slate-900 text-slate-300 w-full md:w-64 md:fixed md:top-0 md:bottom-0 md:left-0 flex flex-col z-40 shadow-xl border-r border-slate-800">
     
     <div class="flex items-center justify-between h-16 px-6 border-b border-slate-800 shrink-0 bg-slate-950">
-        <a href="{{ route('dashboard') }}" class="flex items-center gap-2">
-            <x-application-logo class="block h-8 w-auto fill-current text-white" />
+        <a href="{{ route('dashboard') }}" class="flex items-center gap-3">
+            <img src="{{ asset('images/logobjsm.jpeg') }}" alt="BJSM Logo" class="h-8 w-8 object-cover rounded-lg">
             <span class="font-bold text-lg text-white tracking-wider">DASHBOARD</span>
         </a>
 
@@ -18,12 +18,14 @@
         
         <div class="px-4 py-6 space-y-1.5 flex-1">
             <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest px-3 block mb-3">INTERNAL SYSTEMS</span>
+            
             <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                <svg class="w-5 h-5 me-3 shrink-0 transition {{ request()->routeIs('dashboard') ? 'text-indigo-400' : 'text-slate-450 text-slate-400 group-hover:text-slate-200' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 me-3 shrink-0 transition {{ request()->routeIs('dashboard') ? 'text-indigo-400' : 'text-slate-400 group-hover:text-slate-200' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4zM14 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2v-4z"/>
                 </svg>
                 <span>{{ __('Pemesanan Venue') }}</span>
             </x-nav-link>
+
             <x-nav-link :href="route('analytics')" :active="request()->routeIs('analytics')">
                 <svg class="w-5 h-5 me-3 shrink-0 transition {{ request()->routeIs('analytics') ? 'text-indigo-400' : 'text-slate-400 group-hover:text-slate-200' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v14m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
