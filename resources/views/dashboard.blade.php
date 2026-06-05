@@ -91,12 +91,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                                 </svg>
                             </div>
-                            <input type="text" 
-                                   name="search" 
-                                   value="{{ request('search') }}" 
-                                   placeholder="Cari nama, email, atau no telp..." 
-                                   class="w-full pl-9 pr-4 py-2 text-sm rounded-xl border-slate-200 focus:border-indigo-500 focus:ring-indigo-500 text-slate-700 bg-slate-50/50"
-                            >
+                            <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari nama, email, atau no telp..." class="w-full pl-9 pr-4 py-2 text-sm rounded-xl border-slate-200 focus:border-indigo-500 focus:ring-indigo-500 text-slate-700 bg-slate-50/50">
                         </div>
                         <button type="submit" class="px-4 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl transition shadow-sm shadow-indigo-100">
                             Cari
@@ -110,14 +105,14 @@
                 </div>
                 
                 <div class="overflow-x-auto separation-scroll">
-                    <table class="w-full text-left border-collapse min-w-[1800px]">
+                    <table class="w-full text-left border-collapse min-w-[1600px]"> 
                         <thead>
                             <tr class="bg-slate-50 text-slate-500 text-xs font-bold uppercase tracking-wider border-b border-slate-100 whitespace-nowrap">
                                 <th class="p-4">ID</th>
                                 <th class="p-4">Customer Name</th>
                                 <th class="p-4">Customer Email</th>
                                 <th class="p-4">Customer Phone</th>
-                                <th class="p-4">Company / Organization</th>
+                                <th class="p-4">Company</th>
                                 <th class="p-4">Event Title</th>
                                 <th class="p-4">Event Date</th>
                                 <th class="p-4">Start Time</th>
@@ -125,12 +120,11 @@
                                 <th class="p-4">Venue Package</th>
                                 <th class="p-4">Total Pax</th>
                                 <th class="p-4">Room Layout</th>
-                                <th class="p-4">Grand Total</th>
-                                <th class="p-4">Currency</th>
                                 <th class="p-4" style="min-width: 160px;">Status</th>
                                 <th class="p-4">Notes</th>
                                 <th class="p-4">Created At</th>
                                 <th class="p-4">Updated At</th>
+                                <th class="p-4 text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="text-sm text-slate-600 divide-y divide-slate-100 whitespace-nowrap">
@@ -152,42 +146,42 @@
                                     </td>
                                     <td class="p-4 text-slate-800 font-medium">{{ number_format($booking->total_pax) }}</td>
                                     <td class="p-4 text-xs bg-slate-50 text-slate-600 border border-slate-100 rounded-md py-1 px-2 inline-block mt-3">{{ $booking->room_layout }}</td>
-                                    <td class="p-4 font-bold text-slate-900">{{ number_format($booking->grand_total, 2, '.', '') }}</td>
-                                    <td class="p-4 text-xs font-bold text-slate-400">{{ $booking->currency }}</td>
-                                    
                                     <td class="p-4">
                                         <form action="{{ route('dashboard.updateStatus', $booking->id) }}" method="POST" class="inline-block w-full">
                                             @csrf
                                             @method('PATCH')
-                                            <select name="status" 
-                                                    onchange="this.form.submit()" 
-                                                    class="w-full py-1.5 px-2.5 text-xs font-semibold rounded-lg border-slate-200 focus:border-indigo-500 focus:ring-indigo-500 
-                                                    @if($booking->status === 'confirmed') bg-emerald-50 text-emerald-700 border-emerald-200
-                                                    @elseif($booking->status === 'cancelled') bg-rose-50 text-rose-700 border-rose-200
-                                                    @else bg-amber-50 text-amber-700 border-amber-200 @endif">
+                                            <select name="status" onchange="this.form.submit()" class="w-full py-1.5 px-2.5 text-xs font-semibold rounded-lg border-slate-200 focus:border-indigo-500 focus:ring-indigo-500 @if($booking->status === 'confirmed') bg-emerald-50 text-emerald-700 border-emerald-200 @elseif($booking->status === 'cancelled') bg-rose-50 text-rose-700 border-rose-200 @else bg-amber-50 text-amber-700 border-amber-200 @endif">
                                                 <option value="pending" {{ $booking->status === 'pending' ? 'selected' : '' }}>pending</option>
                                                 <option value="confirmed" {{ $booking->status === 'confirmed' ? 'selected' : '' }}>confirmed</option>
                                                 <option value="cancelled" {{ $booking->status === 'cancelled' ? 'selected' : '' }}>cancelled</option>
                                             </select>
                                         </form>
                                     </td>
-                                                                                    
                                     <td class="p-4 max-w-xs truncate" title="{{ $booking->notes }}">{{ $booking->notes ?? '-' }}</td>
                                     <td class="p-4 text-xs text-slate-400">{{ $booking->created_at ? $booking->created_at->format('Y-m-d H:i:s') : '-' }}</td>
                                     <td class="p-4 text-xs text-slate-400">{{ $booking->updated_at ? $booking->updated_at->format('Y-m-d H:i:s') : '-' }}</td>
+                                    <td class="p-4 text-center">
+                                        <a href="{{ route('dashboard.downloadPdf', $booking->id) }}" 
+                                           class="inline-flex items-center justify-center p-2 text-indigo-600 bg-indigo-50 hover:bg-indigo-600 hover:text-white rounded-lg transition-all duration-200 border border-indigo-100 shadow-sm"
+                                           title="Download PDF Booking">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                            </svg>
+                                        </a>
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="18" class="p-12 text-center text-slate-400 italic">
-                                        Belum ada data yang cocok dengan pencarian Anda.
-                                    </td>
+                                    <td colspan="17" class="p-12 text-center text-slate-400 italic"> Belum ada data yang cocok dengan pencarian Anda.</td>
                                 </tr>
                             @endforelse
                         </tbody>
                     </table>
+                    <div class="p-4 border-t border-slate-100">
+                        {{ $recentBookings->links() }}
+                    </div>
                 </div>
             </div>
-
         </div>
     </div>
 </x-app-layout>

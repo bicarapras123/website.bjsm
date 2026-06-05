@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\SimpleLuxuryBooking; // Pastikan nama model sesuai dengan file Anda
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB; // Tambahkan ini untuk fungsi grafik
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class DashboardController extends Controller
 {
@@ -13,11 +15,10 @@ class DashboardController extends Controller
         $totalUsers = User::count();
         $totalBookings = SimpleLuxuryBooking::count(); 
     
-        // --- TAMBAHKAN KODE HITUNG STATUS DI BAWAH INI ---
+        // --- HITUNG STATUS ---
         $totalPending = SimpleLuxuryBooking::where('status', 'pending')->count();
         $totalConfirmed = SimpleLuxuryBooking::where('status', 'confirmed')->count();
         $totalCancelled = SimpleLuxuryBooking::where('status', 'cancelled')->count();
-        // -------------------------------------------------
     
         $search = $request->input('search');
         $query = SimpleLuxuryBooking::latest();
@@ -30,7 +31,8 @@ class DashboardController extends Controller
             });
         }
     
-        $recentBookings = $query->get();
+        // Hapus ->take(5)->get() dan ganti dengan ->paginate(5)
+        $recentBookings = $query->paginate(5);
     
         // Pastikan variabel baru ini di-compact ke view
         return view('dashboard', compact(
@@ -54,5 +56,37 @@ class DashboardController extends Controller
         $booking->save();
 
         return redirect()->route('dashboard')->with('success', 'Status booking berhasil diperbarui!');
+    }
+
+    // --- TAMBAHAN UNTUK FITUR ANALITIK ---
+    public function analytics()
+    {
+        // 1. Data untuk Grafik Bar: Jumlah Booking per Bulan
+        $monthlyBookings = SimpleLuxuryBooking::selectRaw('COUNT(*) as total, MONTH(event_date) as month')
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        $labels = $monthlyBookings->pluck('month')->map(function($m) {
+            return date("M", mktime(0, 0, 0, $m, 1));
+        });
+        $data = $monthlyBookings->pluck('total');
+
+        // 2. Data untuk Grafik Pie: Status Booking
+        $statusCounts = SimpleLuxuryBooking::select('status', DB::raw('count(*) as total'))
+            ->groupBy('status')
+            ->pluck('total', 'status');
+
+        return view('analytics', compact('labels', 'data', 'statusCounts'));
+    }
+
+    public function downloadPdf($id)
+    {
+        // Sesuaikan 'SimpleLuxuryBooking' dengan nama Model Anda
+        $booking = \App\Models\SimpleLuxuryBooking::findOrFail($id); 
+        
+        $pdf = Pdf::loadView('pdf.booking', compact('booking'));
+        
+        return $pdf->download('Booking_'.$booking->id.'.pdf');
     }
 }

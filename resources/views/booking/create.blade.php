@@ -107,41 +107,45 @@
                         </div>
                     </div>
 
-                    <!-- SECTION 3: PAKET BARU (@250rb) & CUSTOM NOTES SYSTEM -->
-                    <div class="space-y-4 pt-4">
-                        <h3 class="text-sm font-bold uppercase tracking-wider text-amber-400 border-b border-white/10 pb-2 font-luxury-title">
-                            03. Pemilihan Paket & Tata Letak Ruang
-                        </h3>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
-                            
-                            <!-- Dropdown Paket Dinamis Selaras List Baru -->
-                            <div class="space-y-1.5">
-                                <label class="text-xs font-bold text-slate-300 uppercase tracking-wider">Pilihan Kategori Paket</label>
-                                <select name="venue_package" id="venue_package" required class="w-full bg-white border-2 border-slate-700 text-slate-900 font-bold rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition">
-                                    <option value="" disabled selected class="text-slate-400">-- Pilih Kategori Paket --</option>
-                                    <option value="Paket Small Meeting" {{ old('venue_package') == 'Paket Small Meeting' ? 'selected' : '' }}>Paket Small Meeting (Rp 250.000 / Pax)</option>
-                                    <option value="Paket Half Day Meeting" {{ old('venue_package') == 'Paket Half Day Meeting' ? 'selected' : '' }}>Paket Half Day Meeting (Rp 250.000 / Pax)</option>
-                                    <option value="Paket Full Day Meeting" {{ old('venue_package') == 'Paket Full Day Meeting' ? 'selected' : '' }}>Paket Full Day Meeting (Rp 250.000 / Pax)</option>
-                                    <option value="Paket Fullboard Meeting" {{ old('venue_package') == 'Paket Fullboard Meeting' ? 'selected' : '' }}>Paket Fullboard Meeting (Rp 250.000 / Pax)</option>
-                                    <option value="Paket Convention Centre (Custom)" {{ old('venue_package') == 'Paket Convention Centre (Custom)' ? 'selected' : '' }}>Paket Convention Centre (Custom / Kontak Admin)</option>
-                                </select>
-                            </div>
+                <!-- SECTION 3: PAKET KELIPATAN 5JT -->
+                <div class="space-y-4 pt-4">
+                    <h3 class="text-sm font-bold uppercase tracking-wider text-amber-400 border-b border-white/10 pb-2 font-luxury-title">
+                        03. Pemilihan Paket & Tata Letak Ruang
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-bold text-slate-300 uppercase tracking-wider">Pilihan Kategori Paket</label>
+                            <select name="venue_package" id="venue_package" required class="w-full bg-white border-2 border-slate-700 text-slate-900 font-bold rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition">
+                                <option value="" disabled selected>-- Pilih Paket Meeting --</option>
+                                <option value="Paket Small Meeting">Paket Small Meeting (Rp 5.000.000)</option>
+                                <option value="Paket Half Day Meeting">Paket Half Day Meeting (Rp 10.000.000)</option>
+                                <option value="Paket Full Day Meeting">Paket Full Day Meeting (Rp 15.000.000)</option>
+                                <option value="Paket Fullboard Meeting">Paket Fullboard Meeting (Rp 20.000.000)</option>
+                                <option value="Paket Convention Centre">Paket Convention Centre (Custom / Hubungi Admin)</option>
+                            </select>
+                        </div>
 
-                            <div class="space-y-1.5">
-                                <label class="text-xs font-bold text-slate-300 uppercase tracking-wider">Jumlah Tamu / Pax</label>
-                                <input type="number" name="total_pax" value="{{ old('total_pax') }}" min="1" required class="w-full bg-white border-2 border-slate-700 text-slate-900 font-semibold rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition placeholder-slate-400" placeholder="Jumlah Orang">
-                            </div>
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-bold text-slate-300 uppercase tracking-wider">Jumlah Tamu / Pax</label>
+                            <input type="number" name="total_pax" id="total_pax" min="1" required class="w-full bg-white border-2 border-slate-700 text-slate-900 font-semibold rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition" placeholder="Contoh: 100">
+                        </div>
+                    </div>
 
-                            <!-- Dropdown Susunan Layout Standar & Custom -->
-                            <div class="space-y-1.5">
-                                <label class="text-xs font-bold text-slate-300 uppercase tracking-wider">Susunan Kursi (Layout)</label>
-                                <select name="room_layout" id="room_layout" required class="w-full bg-white border-2 border-slate-700 text-slate-900 font-bold rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition">
-                                    <option value="" disabled selected class="text-slate-400">-- Pilih Layout Meja/Kursi --</option>
-                                    <option value="Standar" {{ old('room_layout') == 'Standar' ? 'selected' : '' }}>Standar Layout</option>
-                                    <option value="Custom Layout (Tulis di Note)" {{ old('room_layout') == 'Custom Layout (Tulis di Note)' ? 'selected' : '' }}>Custom Layout (Wajib tulis di note bawah)</option>
-                                </select>
-                            </div>
-                            </div>
+                    <!-- TAMPILAN ESTIMASI HARGA -->
+                    <div id="price_display" class="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4 text-center hidden">
+                        <p class="text-amber-400 text-xs font-bold uppercase tracking-widest">Estimasi Total Investasi</p>
+                        <h4 id="total_price_text" class="text-2xl font-black text-white mt-1">Rp 0</h4>
+                    </div>
+
+                    <div class="space-y-1.5">
+                        <label class="text-xs font-bold text-slate-300 uppercase tracking-wider">Susunan Kursi (Layout)</label>
+                        <select name="room_layout" id="room_layout" required class="w-full bg-white border-2 border-slate-700 text-slate-900 font-bold rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition">
+                            <option value="Standar">Standar Layout</option>
+                            <option value="Custom Layout">Custom Layout (Wajib tulis di note bawah)</option>
+                        </select>
+                    </div>
+                </div>
                             
                         <!-- Textarea Khusus Dilengkapi Informasi Dinamis -->
                         <div class="space-y-1.5">
@@ -168,27 +172,37 @@
     </div>
 
     <!-- Sistem Pendeteksi Otomatis Opsi Custom -->
-    <script>
-        const packageSelect = document.getElementById('venue_package');
-        const layoutSelect = document.getElementById('room_layout');
-        const notesTextarea = document.getElementById('notes');
+            <script>
+            const packageSelect = document.getElementById('venue_package');
+            const paxInput = document.getElementById('total_pax');
+            const priceDisplay = document.getElementById('price_display');
+            const priceText = document.getElementById('total_price_text');
 
-        function checkCustomOptions() {
-            const isCustomPackage = packageSelect.value.includes('(Custom)');
-            const isCustomLayout = layoutSelect.value.includes('Custom');
+            function calculatePrice() {
+                const packageValue = packageSelect.value;
+                const pax = parseInt(paxInput.value) || 0;
+                let basePrice = 0;
 
-            if (isCustomPackage || isCustomLayout) {
-                notesTextarea.style.borderColor = '#fbbf24'; // Ubah border jadi kuning amber sebagai penanda wajib isi
-                notesTextarea.placeholder = "⚠️ Anda memilih opsi CUSTOM. Harap rincikan secara spesifik detail susunan layout atau kebutuhan khusus paket meeting Anda di sini agar tim sales kami bisa segera memprosesnya...";
-            } else {
-                notesTextarea.style.borderColor = '#334155'; // Kembalikan ke border standar
-                notesTextarea.placeholder = "Tulis instruksi khusus operasional hospitality di sini...";
+                // Logika harga berdasarkan daftar paket baru
+                if (packageValue === 'Paket Small Meeting') basePrice = 5000000;
+                else if (packageValue === 'Paket Half Day Meeting') basePrice = 10000000;
+                else if (packageValue === 'Paket Full Day Meeting') basePrice = 15000000;
+                else if (packageValue === 'Paket Fullboard Meeting') basePrice = 20000000;
+
+                // Jika pilih Custom, harga tidak ditampilkan sebagai angka
+                if (packageValue === 'Paket Convention Centre (Custom)') {
+                    priceDisplay.classList.add('hidden');
+                } else if (pax > 0 && basePrice > 0) {
+                    priceDisplay.classList.remove('hidden');
+                    priceText.innerText = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(basePrice);
+                } else {
+                    priceDisplay.classList.add('hidden');
+                }
             }
-        }
 
-        packageSelect.addEventListener('change', checkCustomOptions);
-        layoutSelect.addEventListener('change', checkCustomOptions);
-    </script>
+            packageSelect.addEventListener('change', calculatePrice);
+            paxInput.addEventListener('input', calculatePrice);
+        </script>
 
 </body>
 </html>

@@ -18,21 +18,18 @@
         
         <div class="px-4 py-6 space-y-1.5 flex-1">
             <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest px-3 block mb-3">INTERNAL SYSTEMS</span>
-            
             <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 <svg class="w-5 h-5 me-3 shrink-0 transition {{ request()->routeIs('dashboard') ? 'text-indigo-400' : 'text-slate-450 text-slate-400 group-hover:text-slate-200' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4zM14 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2v-4z"/>
                 </svg>
                 <span>{{ __('Pemesanan Venue') }}</span>
             </x-nav-link>
-
-            <x-nav-link :href="route('venue.create')" :active="request()->routeIs('venue.create')">
-                <svg class="w-5 h-5 me-3 shrink-0 transition {{ request()->routeIs('venue.create') ? 'text-indigo-400' : 'text-slate-400 group-hover:text-slate-200' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+            <x-nav-link :href="route('analytics')" :active="request()->routeIs('analytics')">
+                <svg class="w-5 h-5 me-3 shrink-0 transition {{ request()->routeIs('analytics') ? 'text-indigo-400' : 'text-slate-400 group-hover:text-slate-200' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v14m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                 </svg>
-                <span>{{ __('Input Booking Venue') }}</span>
+                <span>{{ __('Analitik Grafik') }}</span>
             </x-nav-link>
-
         </div>
 
         <div class="p-4 border-t border-slate-800 bg-slate-950/50">

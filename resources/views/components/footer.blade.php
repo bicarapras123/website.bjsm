@@ -13,17 +13,17 @@
                     </div>
                 </div>
                 <p class="text-xs sm:text-sm text-slate-400 font-light leading-relaxed max-w-sm">
-                    Menyediakan convention center bertaraf internasional, ballroom megah, dan fasilitas meeting room premium eksklusif untuk mendukung kesuksesan event mahakarya Anda.
+                Menyediakan fasilitas meeting room premium eksklusif dengan pilihan layout yang fleksibel, mulai dari pengaturan standar hingga kustomisasi sesuai kebutuhan untuk mendukung kesuksesan setiap pertemuan profesional Anda.
                 </p>
             </div>
 
             <div class="md:col-span-3 space-y-4">
                 <h4 class="text-white text-xs font-bold uppercase tracking-[0.2em] font-luxury-title">Navigasi</h4>
                 <ul class="space-y-3 text-xs font-medium">
-                    <li><a href="#" class="hover:text-amber-400 transition duration-200 block py-0.5">Beranda</a></li>
-                    <li><a href="#spaces" class="hover:text-amber-400 transition duration-200 block py-0.5">Koleksi Ruangan</a></li>
-                    <li><a href="#packages" class="hover:text-amber-400 transition duration-200 block py-0.5">Paket Sewa</a></li>
-                    <li><a href="#amenities" class="hover:text-amber-400 transition duration-200 block py-0.5">Fasilitas VIP</a></li>
+                    <li><a href="{{ url('/') }}" class="hover:text-amber-400 transition duration-200 block py-0.5">Beranda</a></li>
+                    <li><a href="{{ route('rooms.index') }}" class="hover:text-amber-400 transition duration-200 block py-0.5">Ruangan</a></li>
+                    <li><a href="{{ route('packages.index') }}" class="hover:text-amber-400 transition duration-200 block py-0.5">Paket Sewa</a></li>
+                    <li><a href="{{ route('contacts.index') }}" class="hover:text-amber-400 transition duration-200 block py-0.5">Contact</a></li>
                 </ul>
             </div>
 
@@ -51,19 +51,16 @@
                     </li>
                 </ul>
             </div>
-
         </div>
     </div>
-
+    
     <div class="border-t border-white/5 bg-slate-950 py-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-medium uppercase tracking-wider text-slate-500">
             <div>
                 &copy; {{ date('Y') }} <span class="text-slate-400">BUANA JAYA SUGIH MAKMUR</span>. All Rights Reserved.
             </div>
             <div class="flex items-center space-x-6">
-                <button @click="openTerms = true" class="hover:text-amber-400 transition duration-200 focus:outline-none">
-                    Terms & Conditions
-                </button>
+                <button @click="openTerms = true" class="hover:text-amber-400 transition duration-200 focus:outline-none">Terms & Conditions</button>
                 <a href="#" class="hover:text-amber-400 transition duration-200">Privacy Policy</a>
             </div>
         </div>

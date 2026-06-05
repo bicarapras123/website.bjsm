@@ -79,24 +79,19 @@
                                 </div>
                             @endif
                         </div>
-
                     </div>
                 </div>
-            @else
-                <p class="text-center text-sm text-slate-400 py-4 italic">
-                    Data pendaftaran Anda telah berhasil direkam dengan aman ke dalam sistem database kami.
-                </p>
             @endif
+
+            <div class="mb-8">
+                <a href="#" class="w-full flex items-center justify-center bg-amber-500 hover:bg-amber-600 text-slate-950 font-black px-10 py-4 rounded-xl text-xs uppercase tracking-[0.2em] transition duration-300 shadow-xl shadow-amber-500/10 hover:shadow-amber-500/20">
+                    Segera Lanjutkan Pembayaran
+                </a>
+            </div>
 
             <p class="text-[11px] text-slate-400 text-center leading-relaxed mt-4">
                 Konfirmasi resmi, kesepakatan kerjasama, beserta link invoice pembayaran akan dikirimkan ke email Anda oleh tim *Hospitality & Sales* kami dalam waktu maksimal 1x24 jam.
             </p>
-
-            <div class="mt-8 text-center">
-                <a href="{{ route('booking.index') }}" class="inline-flex items-center justify-center bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black px-10 py-4 rounded-xl text-xs uppercase tracking-[0.15em] transition duration-300 shadow-xl shadow-amber-500/10 hover:shadow-amber-500/20 transform hover:-translate-y-0.5">
-                    Kembali ke Katalog Utama
-                </a>
-            </div>
 
         </div>
     </main>

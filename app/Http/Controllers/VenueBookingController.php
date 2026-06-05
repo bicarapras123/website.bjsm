@@ -7,63 +7,67 @@ use App\Models\VenueBooking;
 use App\Mail\VenueBookingNotification; 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Http;
 
 class VenueBookingController extends Controller
 {
-    // 1. Menampilkan halaman input form dengan list data dari database
+    // Fungsi untuk menampilkan form
     public function create()
     {
-        // ✨ Mengambil seluruh data booking venue terbaru untuk tabel di sebelah kanan form
         $venueBookings = VenueBooking::latest()->get();
-
-        // Melempar variabel $venueBookings ke file blade
         return view('venue-booking.create', compact('venueBookings'));
     }
 
-    // 2. API Pencarian Otomatis untuk mencarikan data dari simple_luxury_bookings
+    // Fungsi untuk pencarian pelanggan lama
     public function searchCustomer(Request $request)
     {
         $search = $request->get('query');
         
-        // Cari kustomer berdasarkan nama/email/phone di tabel lama
         $customers = SimpleLuxuryBooking::where('customer_name', 'LIKE', "%{$search}%")
-            ->orWhere('customer_name', 'LIKE', "%{$search}%")
             ->orWhere('customer_email', 'LIKE', "%{$search}%")
             ->orWhere('customer_phone', 'LIKE', "%{$search}%")
             ->select('customer_name', 'customer_email', 'customer_phone')
             ->get()
-            ->unique('customer_email') // ✨ AMAN: Menghilangkan baris kuning MySQL strict mode
+            ->unique('customer_email')
             ->take(5)
-            ->values(); // Reset indeks array agar JSON rapi
+            ->values();
 
         return response()->json($customers);
     }
 
-    // 3. Menyimpan data baru ke tabel venue_bookings & Kirim ke Gmail
+    // Fungsi untuk menyimpan data
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'customer_name'  => 'required|string|max:255',
-            'customer_email' => 'required|email|max:255',
-            'customer_phone' => 'required|string|max:20',
-            'venue_name'     => 'required|string|max:255',
+            'customer_name'  => 'required',
+            'customer_email' => 'required|email',
+            'customer_phone' => 'required',
+            'venue_name'     => 'required',
             'event_date'     => 'required|date',
             'start_time'     => 'required',
             'end_time'       => 'required',
-            'notes'          => 'nullable|string',
+            'notes'          => 'nullable',
         ]);
-
-        // Simpan ke database tabel baru (venue_bookings)
+    
+        // 1. Simpan ke database
         $booking = VenueBooking::create($validated);
-
-        // Mengirim Notifikasi ke Gmail Admin
+    
+        // 2. Kirim Pesan WA Otomatis ke Pelanggan
+        $phone = preg_replace('/^0/', '62', $validated['customer_phone']);
+        $message = "Halo *{$validated['customer_name']}*, Reservasi Anda untuk *{$validated['venue_name']}* telah dikonfirmasi oleh Admin BJSM. Terima kasih!";
+    
         try {
-            Mail::to('tiop0747@gmail.com')->send(new VenueBookingNotification($booking));
-        } catch (\Throwable $e) {
-            // ✨ PENGAMAN FATAL: Menggunakan \Throwable menjamin kode di bawah tetap jalan
-            // Walaupun file mail belum dibuat, salah ketik, atau internet server mati.
+        // Ganti bagian Http ini menjadi:
+        Http::withHeaders([
+            'Authorization' => 'LBwEmQYeTxjxerBoNigZ' // Langsung masukkan tokennya di sini
+        ])->asForm()->post('https://api.fonnte.com/send', [
+            'target' => $phone,
+            'message' => $message,
+        ]);
+        } catch (\Exception $e) {
+            // Gagal kirim WA tetap lanjut
         }
-
-        return redirect()->back()->with('success', 'Pemesanan venue berhasil disimpan dan notifikasi Gmail terkirim!');
+    
+        return redirect()->back()->with('success', 'Booking berhasil disimpan & WA konfirmasi terkirim!');
     }
 }

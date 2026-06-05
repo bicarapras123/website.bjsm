@@ -42,8 +42,11 @@
             </p>
             
             <div class="mt-10 sm:mt-12 flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-5 w-full max-w-md mx-auto sm:max-w-none">
-                <a href="#gallery-documentation" class="w-full sm:w-auto bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-bold px-10 py-4 sm:py-5 rounded-xl text-xs uppercase tracking-widest transition duration-300 shadow-2xl text-center">
-                    Jelajahi Galeri Foto
+                <a href="https://wa.me/YOUR_PHONE_NUMBER" target="_blank" class="w-full sm:w-auto bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-bold px-10 py-4 sm:py-5 rounded-xl text-xs uppercase tracking-widest transition duration-300 shadow-2xl shadow-amber-500/20 text-center flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12.031 6.172c-3.187 0-5.781 2.594-5.781 5.781 0 1.016.266 1.984.734 2.836l-1.078 3.938 4.047-1.078c.813.438 1.734.688 2.703.688 3.187 0 5.781-2.594 5.781-5.781 0-3.187-2.594-5.781-5.781-5.781zm0 10.781c-.844 0-1.641-.234-2.328-.625l-1.641.438.438-1.609c-.422-.734-.672-1.578-.672-2.484 0-2.656 2.156-4.813 4.813-4.813 2.656 0 4.813 2.156 4.813 4.813 0 2.656-2.156 4.813-4.813 4.813z"/>
+                    </svg>
+                    Hubungi Admin
                 </a>
                 <a href="{{ route('booking.index') }}" class="w-full sm:w-auto bg-transparent border border-slate-700 hover:border-amber-400 text-slate-300 hover:text-white font-bold px-10 py-4 sm:py-5 rounded-xl text-xs uppercase tracking-widest transition duration-300 text-center backdrop-blur-sm">
                     Booking Jadwal Gedung
@@ -56,90 +59,42 @@
     <section id="gallery-documentation" class="py-24 sm:py-32 bg-white border-t border-slate-100 scroll-mt-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
-            <!-- Deskripsi Header Section -->
             <div class="mb-16 border-b border-slate-200 pb-6" data-aos="fade-right" data-aos-duration="800">
                 <span class="text-xs font-bold text-emerald-700 uppercase tracking-[0.2em] block mb-2">Visual Showcase</span>
                 <h2 class="text-xl sm:text-3xl font-bold text-slate-900 uppercase tracking-widest font-luxury-title flex items-center gap-3">
-                    <span class="w-2 h-6 bg-amber-500 block rounded"></span> Galeri Dokumentasi Event
+                    <span class="w-2 h-6 bg-amber-500 block rounded"></span> Galeri Dokemuntasi Ruangan
                 </h2>
                 <p class="text-slate-500 text-xs sm:text-sm mt-3 font-light max-w-3xl leading-relaxed">
-                    Kilasan realisasi berbagai momentum mahakarya yang telah terselenggara di BJSM Venue. Setiap tata panggung, pencahayaan, dan konfigurasi modular dirancang presisi demi menghadirkan atmosfer megah berkelas internasional.
+                    Kilasan realisasi berbagai momentum mahakarya yang telah terselenggara di BJSM Venue.
                 </p>
             </div>
 
-            <!-- Grid Galeri dengan Animasi Slide Slide-Up Berurutan -->
+            @php
+                $galleries = [
+                    ['img' => 'doc1.jpeg', 'title' => 'Dokumentasi I ', 'desc' => 'Simulasi tata letak jamuan makan formal.'],
+                    ['img' => 'doc2.jpeg', 'title' => 'Dokumentasi II', 'desc' => 'Integrasi teknologi multimedia nirkabel.'],
+                    ['img' => 'doc3.jpeg', 'title' => 'Dokumentasi III', 'desc' => 'Sistem insulasi suara bertaraf studio.'],
+                ];
+            @endphp
+
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                
-                <!-- Foto 1 (Delay 100ms) -->
+                @foreach($galleries as $index => $item)
                 <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-100 group shadow-md border border-slate-100" 
-                     data-aos="slide-up" data-aos-delay="100" data-aos-duration="700">
-                    <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=600" alt="Luxury Wedding Setup" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                     data-aos="slide-up" data-aos-delay="{{ ($index + 1) * 100 }}" data-aos-duration="700">
+                    
+                    <img src="{{ asset('images/' . $item['img']) }}" alt="{{ $item['title'] }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    
                     <div class="absolute inset-0 bg-slate-950/75 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6 backdrop-blur-[2px]">
-                        <span class="text-amber-400 text-[10px] font-bold tracking-widest uppercase">Wedding Reception</span>
-                        <h4 class="text-white font-semibold font-luxury-title tracking-wide text-sm mt-1">Setup Meja Imperial Banquet</h4>
-                        <p class="text-slate-300 text-[11px] mt-1.5 font-light leading-snug">Simulasi tata letak jamuan makan formal melingkar berskala besar dengan dekorasi floral eksklusif.</p>
+                        <span class="text-amber-400 text-[10px] font-bold tracking-widest uppercase"> {{ $index + 1 }}</span>
+                        <h4 class="text-white font-semibold font-luxury-title tracking-wide text-sm mt-1">{{ $item['title'] }}</h4>
+                        <p class="text-slate-300 text-[11px] mt-1.5 font-light leading-snug">{{ $item['desc'] }}</p>
                     </div>
                 </div>
-
-                <!-- Foto 2 (Delay 200ms) -->
-                <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-100 group shadow-md border border-slate-100"
-                     data-aos="slide-up" data-aos-delay="200" data-aos-duration="700">
-                    <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=600" alt="International Seminar" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                    <div class="absolute inset-0 bg-slate-950/75 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6 backdrop-blur-[2px]">
-                        <span class="text-amber-400 text-[10px] font-bold tracking-widest uppercase">Corporate Event</span>
-                        <h4 class="text-white font-semibold font-luxury-title tracking-wide text-sm mt-1">Konferensi Internasional & Seminar</h4>
-                        <p class="text-slate-300 text-[11px] mt-1.5 font-light leading-snug">Integrasi teknologi multimedia nirkabel dan visualisasi layar ganda untuk kelancaran presentasi korporasi.</p>
-                    </div>
-                </div>
-
-                <!-- Foto 3 (Delay 300ms) -->
-                <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-100 group shadow-md border border-slate-100"
-                     data-aos="slide-up" data-aos-delay="300" data-aos-duration="700">
-                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=600" alt="Concert Lighting" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                    <div class="absolute inset-0 bg-slate-950/75 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6 backdrop-blur-[2px]">
-                        <span class="text-amber-400 text-[10px] font-bold tracking-widest uppercase">Music Concert</span>
-                        <h4 class="text-white font-semibold font-luxury-title tracking-wide text-sm mt-1">Tata Panggung & Sound Acoustics 120dB</h4>
-                        <p class="text-slate-300 text-[11px] mt-1.5 font-light leading-snug">Sistem insulasi suara bertaraf studio studio yang menjamin kejernihan audio performa panggung musik masif.</p>
-                    </div>
-                </div>
-
-                <!-- Foto 4 (Delay 100ms di baris baru) -->
-                <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-100 group shadow-md border border-slate-100"
-                     data-aos="slide-up" data-aos-delay="100" data-aos-duration="700">
-                    <img src="https://images.unsplash.com/photo-1431540015161-0bf868a2d407?q=80&w=600" alt="Boardroom Meeting" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                    <div class="absolute inset-0 bg-slate-950/75 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6 backdrop-blur-[2px]">
-                        <span class="text-amber-400 text-[10px] font-bold tracking-widest uppercase">Executive Meeting</span>
-                        <h4 class="text-white font-semibold font-luxury-title tracking-wide text-sm mt-1">Sesi Rapat Direksi Eksklusif</h4>
-                        <p class="text-slate-300 text-[11px] mt-1.5 font-light leading-snug">Ruang rapat berprivasi tinggi yang dilengkapi fasilitas smartboard interaktif dan sistem tracking microphone.</p>
-                    </div>
-                </div>
-
-                <!-- Foto 5 (Delay 200ms) -->
-                <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-100 group shadow-md border border-slate-100"
-                     data-aos="slide-up" data-aos-delay="200" data-aos-duration="700">
-                    <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=600" alt="Product Launch Exhibition" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                    <div class="absolute inset-0 bg-slate-950/70 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6 backdrop-blur-[2px]">
-                        <span class="text-amber-400 text-[10px] font-bold tracking-widest uppercase">Exhibition Fair</span>
-                        <h4 class="text-white font-semibold font-luxury-title tracking-wide text-sm mt-1">Metropolitan Product Launch Stage</h4>
-                        <p class="text-slate-300 text-[11px] mt-1.5 font-light leading-snug">Area lantai komersial berkapasitas beban berat, dioptimalkan untuk pameran berskala besar.</p>
-                    </div>
-                </div>
-
-                <!-- Foto 6 (Delay 300ms) -->
-                <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-100 group shadow-md border border-slate-100"
-                     data-aos="slide-up" data-aos-delay="300" data-aos-duration="700">
-                    <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=600" alt="Gala Dinner Lighting" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                    <div class="absolute inset-0 bg-slate-950/75 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6 backdrop-blur-[2px]">
-                        <span class="text-amber-400 text-[10px] font-bold tracking-widest uppercase">Gala Night</span>
-                        <h4 class="text-white font-semibold font-luxury-title tracking-wide text-sm mt-1">Suasana Malam Penganugerahan Megah</h4>
-                        <p class="text-slate-300 text-[11px] mt-1.5 font-light leading-snug">Pengaturan ambient lighting dinamis dari control room mezzanine untuk mendukung jalannya perayaan formal.</p>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
         </div>
     </section>
-
     @include('components.footer')
 
     <!-- PUSTAKA ANIMASI: AOS JAVASCRIPT -->
