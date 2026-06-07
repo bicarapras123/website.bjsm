@@ -7,18 +7,21 @@
         .header { text-align: center; margin-bottom: 20px; }
         .logo { width: 120px; height: auto; margin-bottom: 10px; }
         
-        /* Container agar konten tidak terpotong paksa */
         .content-wrapper { display: block; page-break-inside: avoid; }
         
         table { width: 100%; border-collapse: collapse; margin-top: 10px; }
         th { background-color: #f8f9fa; width: 40%; text-align: left; padding: 10px; border: 1px solid #ddd; font-size: 13px; }
         td { padding: 10px; border: 1px solid #ddd; font-size: 13px; }
         
-        /* Mencegah tabel terpotong di tengah baris */
         tr { page-break-inside: avoid; }
         
         .status-badge { font-weight: bold; }
         .footer { margin-top: 30px; text-align: center; font-size: 11px; color: #777; border-top: 1px solid #eee; padding-top: 10px; }
+        
+        /* Style khusus untuk baris total */
+        .total-row { background-color: #f0fdf4; }
+        .total-label { color: #166534; font-weight: bold; }
+        .total-value { font-weight: bold; color: #166534; }
     </style>
 </head>
 <body>
@@ -41,6 +44,14 @@
             <tr><th>Waktu</th><td>{{ $booking->start_time }} s/d {{ $booking->end_time }}</td></tr>
             <tr><th>Paket</th><td>{{ $booking->venue_package }}</td></tr>
             <tr><th>Jumlah Pax</th><td>{{ number_format($booking->total_pax) }} orang</td></tr>
+            
+            <tr class="total-row">
+                <th class="total-label">Total Harga (Grand Total)</th>
+                <td class="total-value">
+                    Rp {{ number_format($booking->grand_total, 0, ',', '.') }}
+                </td>
+            </tr>
+            
             <tr><th>Layout Kursi</th><td>{{ $booking->room_layout }}</td></tr>
             <tr><th>Catatan</th><td>{{ $booking->notes ?? '-' }}</td></tr>
             <tr>

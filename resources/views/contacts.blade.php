@@ -102,17 +102,17 @@
                         <div class="space-y-6">
                             <div>
                                 <span class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">WhatsApp Dedicated</span>
-                                <a href="https://wa.me/6281234567890" target="_blank" class="text-sm font-bold text-slate-900 hover:text-emerald-700 transition tracking-wide">
-                                    +62 812-3456-7890
+                                <a href="https://wa.me/6281809008585" target="_blank" class="text-sm font-bold text-slate-900 hover:text-emerald-700 transition tracking-wide">
+                                    +62 812-80900-8585
                                 </a>
                             </div>
                             <div>
                                 <span class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Telepon Kantor</span>
-                                <p class="text-sm font-semibold text-slate-900 tracking-wide">(021) 555-8721</p>
+                                <p class="text-sm font-semibold text-slate-900 tracking-wide">021 2962 0888</p>
                             </div>
                             <div>
                                 <span class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Email Korespondensi</span>
-                                <a href="mailto:info@bjsmvenue.com" class="text-sm font-medium text-slate-900 hover:text-emerald-700 transition">info@bjsmvenue.com</a>
+                                <a href="mailto:info@bjsmvenue.com" class="text-sm font-medium text-slate-900 hover:text-emerald-700 transition">admin@cvbuana.co.id</a>
                             </div>
                         </div>
                     </div>
@@ -155,9 +155,9 @@
                             <span class="h-[1px] w-6 bg-amber-500"></span>
                             <span class="text-[11px] font-bold text-amber-600 uppercase tracking-[0.2em] block">Headquarters Address</span>
                         </div>
-                        <h3 class="text-2xl sm:text-3xl font-extrabold uppercase tracking-wide font-luxury-title text-slate-800">Grand Central Office</h3>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold uppercase tracking-wide font-luxury-title text-slate-800">BJSM Venue Jakarta</h3>
                         <p class="text-sm sm:text-base text-slate-600 font-light leading-relaxed">
-                            Jl. Kemang Raya No. 10, Bangka, Mampang Prapatan, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12730
+                            Jl. Bandengan Selatan No. 14 Jakarta Barat
                         </p>
                     </div>
 
@@ -173,7 +173,7 @@
                     <div class="relative w-full h-[350px] sm:h-[480px] bg-white p-2 rounded-3xl border border-slate-200 shadow-[0_10px_40px_rgba(0,0,0,0.04)] overflow-hidden group">
                         <div class="absolute inset-0 bg-gradient-to-tr from-emerald-500/[0.02] to-amber-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-750 pointer-events-none rounded-3xl"></div>
                         
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2573295984714!2d106.8139575!3d-6.2363749!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f143719ec209%3A0x633ab0a9f5c4a456!2sJakarta!5e0!3m2!1sid!2sid!4v1710000000000!5m2!1sid!2sid" 
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31734.456879194633!2d106.78917134380598!3d-6.156583236605481!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f61d66cc0c79%3A0x8732837d2d49e0a!2sWorld%20Hotel%20Bandengan!5e0!3m2!1sid!2sid!4v1780822429933!5m2!1sid!2sid" 
                                 class="w-full h-full rounded-2xl border-0 opacity-90 group-hover:opacity-100 transition-all duration-500 ease-in-out" 
                                 allowfullscreen="" 
                                 loading="lazy" 

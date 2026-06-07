@@ -17,7 +17,7 @@ class BookingController extends Controller
     }
 
     /**
-     * Menampilkan Halaman Form Pendaftaran (Akses Publik setelah rute dipindah)
+     * Menampilkan Halaman Form Pendaftaran (Akses Publik)
      */
     public function create()
     {
@@ -29,7 +29,7 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        // 1. Validasi Ketat Data yang Penting-Penting Saja (Standar Hotel Bintang 5)
+        // 1. Validasi Data
         $validated = $request->validate([
             'customer_name'           => 'required|string|max:255',
             'customer_email'          => 'required|email|max:255',
@@ -45,35 +45,30 @@ class BookingController extends Controller
             'notes'                   => 'nullable|string',
         ]);
 
-        // 2. Logika Hitung Otomatis Harga Dasar & Mata Uang Sesuai Paket Pilihan (Dinamis)
-        $basePrice = 0;
-        $currency = 'IDR';
+            // Logika Harga (Fixed Price berdasarkan Paket)
+            $basePrice = 0;
+            $currency = 'IDR';
 
-        switch ($request->venue_package) {
-            case 'General Admissions (USD)':
-                $basePrice = 290;
-                $currency = 'USD';
-                break;
-            case 'Corporate (USD)':
-                $basePrice = 220;
-                $currency = 'USD';
-                break;
-            case 'General Admissions (IDR)':
-                $basePrice = 3500000;
-                $currency = 'IDR';
-                break;
-            case 'Instansi / Mahasiswa (IDR)':
-                $basePrice = 2600000;
-                $currency = 'IDR';
-                break;
-            default:
-                $basePrice = 3000000; // Harga cadangan jika paket tidak terdefinisi
-        }
+            switch ($request->venue_package) {
+                case 'Paket Small Meeting':
+                    $basePrice = 5000000;
+                    break;
+                case 'Paket Half Day Meeting':
+                    $basePrice = 10000000;
+                    break;
+                case 'Paket Full Day Meeting':
+                    $basePrice = 15000000;
+                    break;
+                case 'Paket Fullboard Meeting':
+                    $basePrice = 20000000;
+                    break;
+                default:
+                    $basePrice = 0; // Untuk Custom, harga 0 atau sesuai kebijakan Anda
+            }
 
-        // Kalkulasi total investasi: Harga paket dikali jumlah Pax (Tamu/Tiket)
-        $grandTotal = $basePrice * $request->total_pax;
+            $grandTotal = $basePrice;
 
-        // 3. Menyimpan Data Menggunakan Query Builder ke Tabel 'simple_luxury_bookings'
+        // 3. Menyimpan Data ke Database
         DB::table('simple_luxury_bookings')->insert([
             'customer_name'           => $validated['customer_name'],
             'customer_email'          => $validated['customer_email'],
@@ -88,20 +83,20 @@ class BookingController extends Controller
             'room_layout'             => $validated['room_layout'],
             'grand_total'             => $grandTotal,
             'currency'                => $currency,
-            'status'                  => 'pending', // Otomatis masuk antrean verifikasi internal
+            'status'                  => 'pending',
             'notes'                   => $validated['notes'],
             'created_at'              => now(),
             'updated_at'              => now(),
         ]);
 
-        // 4. Redirect dengan menyertakan session flash data (booking_data) agar tampil di halaman sukses
+        // 4. Redirect
         return redirect()->route('booking.success')
             ->with('success_message', 'Reservasi eksklusif Anda berhasil didaftarkan. Tim Sales Executive kami akan segera memverifikasi ketersediaan jadwal.')
             ->with('booking_data', $request->all());
     }
 
     /**
-     * Menampilkan Halaman Konfirmasi Sukses Setelah Booking (Akses Publik)
+     * Menampilkan Halaman Konfirmasi Sukses
      */
     public function success()
     {
