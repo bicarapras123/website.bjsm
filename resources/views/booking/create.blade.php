@@ -68,7 +68,7 @@
                                 <input type="email" name="customer_email" value="{{ old('customer_email') }}" required class="w-full bg-white border-2 border-slate-700 text-slate-900 font-semibold rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition">
                             </div>
                             <div class="space-y-1.5">
-                                <label class="text-xs font-bold text-slate-300 uppercase tracking-wider">Nama Perusahaan <span class="text-[10px] text-slate-400 lowercase font-normal">(opsional)</span></label>
+                                <label class="text-xs font-bold text-slate-300 uppercase tracking-wider">Nama Perusahaan/Organisasi <span class="text-[10px] text-slate-400 lowercase font-normal">(opsional)</span></label>
                                 <input type="text" name="company_or_organization" value="{{ old('company_or_organization') }}" class="w-full bg-white border-2 border-slate-700 text-slate-900 font-semibold rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition">
                             </div>
                         </div>
@@ -107,7 +107,7 @@
                                     <option value="Paket Half Day Meeting">Paket Half Day Meeting (Rp 10.000.000)</option>
                                     <option value="Paket Full Day Meeting">Paket Full Day Meeting (Rp 15.000.000)</option>
                                     <option value="Paket Fullboard Meeting">Paket Fullboard Meeting (Rp 20.000.000)</option>
-                                    <option value="Paket Convention Centre">Paket Convention Centre (Custom / Hubungi Admin)</option>
+                                    <option value="Paket Convention Centre">Paket Convention Centre (Custom)</option>
                                 </select>
                             </div>
                             <div class="space-y-1.5">
@@ -122,16 +122,26 @@
                         </div>
 
                         <div class="space-y-1.5">
-                            <label class="text-xs font-bold text-slate-300 uppercase tracking-wider">Susunan Kursi (Layout)</label>
-                            <select name="room_layout" required class="w-full bg-white border-2 border-slate-700 text-slate-900 font-bold rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition">
-                                <option value="Standar">Standar Layout</option>
-                                <option value="Custom Layout">Custom Layout (Tulis di note)</option>
-                            </select>
-                        </div>
+                        <label class="text-xs font-bold text-slate-300 uppercase tracking-wider">Susunan Kursi (Layout)</label>
+                        <select name="room_layout" id="room_layout" required class="w-full bg-white border-2 border-slate-700 text-slate-900 font-bold rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition">
+                            <option value="Standar">Standar (Sesuai kebutuhan acara)</option>
+                            <option value="Custom Layout">Custom (Silakan hubungi Admin)</option>
+                        </select>
+                        <p id="layout_help_text" class="text-[10px] text-amber-400/80 italic hidden mt-1">
+                            *Untuk layout khusus, silakan hubungi admin kami untuk pembicaraan lebih lanjut.
+                        </p>
+                    </div>
 
-                        <div class="space-y-1.5">
-                            <label class="text-xs font-bold text-slate-300 uppercase tracking-wider">Catatan Tambahan</label>
-                            <textarea name="notes" rows="3" class="w-full bg-white border-2 border-slate-700 text-slate-900 font-semibold rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition"></textarea>
+                    <div id="custom_notes_wrapper" class="space-y-1.5 hidden transition-all duration-300">
+                        <label class="text-xs font-bold text-slate-300 uppercase tracking-wider">Catatan Tambahan (Wajib untuk Paket Custom)</label>
+                        <textarea name="notes" id="notes_textarea" rows="3" class="w-full bg-white border-2 border-slate-700 text-slate-900 font-semibold rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition"></textarea>
+                    </div>
+                        <!-- Ubah bagian ini di dalam form -->
+                        <div id="custom_notes_wrapper" class="space-y-1.5 hidden transition-all duration-300">
+                            <label class="text-xs font-bold text-slate-300 uppercase tracking-wider">
+                                Catatan Tambahan (Wajib Diisi untuk Paket Custom)
+                            </label>
+                            <textarea name="notes" id="notes_textarea" rows="3" class="w-full bg-white border-2 border-slate-700 text-slate-900 font-semibold rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition"></textarea>
                         </div>
                     </div>
 
@@ -146,29 +156,44 @@
         @include('components.footer')
     </div>
 
-    <script>
-        const packageSelect = document.getElementById('venue_package');
-        const priceDisplay = document.getElementById('price_display');
-        const priceText = document.getElementById('total_price_text');
+            <script>
+            const packageSelect = document.getElementById('venue_package');
+            const priceDisplay = document.getElementById('price_display');
+            const priceText = document.getElementById('total_price_text');
+            
+            // Elemen baru
+            const notesWrapper = document.getElementById('custom_notes_wrapper');
+            const notesTextarea = document.getElementById('notes_textarea');
 
-        function updatePrice() {
-            const val = packageSelect.value;
-            const prices = {
-                'Paket Small Meeting': 5000000,
-                'Paket Half Day Meeting': 10000000,
-                'Paket Full Day Meeting': 15000000,
-                'Paket Fullboard Meeting': 20000000
-            };
+            function updateFormVisibility() {
+                const val = packageSelect.value;
+                const prices = {
+                    'Paket Small Meeting': 5000000,
+                    'Paket Half Day Meeting': 10000000,
+                    'Paket Full Day Meeting': 15000000,
+                    'Paket Fullboard Meeting': 20000000
+                };
 
-            if (prices[val]) {
-                priceDisplay.classList.remove('hidden');
-                priceText.innerText = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(prices[val]);
-            } else {
-                priceDisplay.classList.add('hidden');
+                // 1. Logika Harga
+                if (prices[val]) {
+                    priceDisplay.classList.remove('hidden');
+                    priceText.innerText = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(prices[val]);
+                } else {
+                    priceDisplay.classList.add('hidden');
+                }
+
+                // 2. Logika Menampilkan Catatan hanya jika "Paket Convention Centre" dipilih
+                if (val === 'Paket Convention Centre') {
+                    notesWrapper.classList.remove('hidden');
+                    notesTextarea.setAttribute('required', 'required'); // Wajib diisi
+                } else {
+                    notesWrapper.classList.add('hidden');
+                    notesTextarea.removeAttribute('required'); // Tidak wajib
+                    notesTextarea.value = ''; // Opsional: mengosongkan nilai jika user ganti paket
+                }
             }
-        }
 
-        packageSelect.addEventListener('change', updatePrice);
+            packageSelect.addEventListener('change', updateFormVisibility);
     </script>
 </body>
 </html>

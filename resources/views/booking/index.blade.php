@@ -111,6 +111,23 @@
                                     <td class="p-6 text-center text-xs">24 Jam</td>
                                     <td class="p-6 text-center font-bold text-slate-800">Rp 20.000.000</td>
                                 </tr>
+                                <tr class="hover:bg-amber-50 transition-colors bg-gradient-to-r from-amber-50/40 to-transparent">
+                                    <td class="p-6 font-bold text-amber-700 text-sm flex items-center gap-2">
+                                        Convention Centre (Custom)
+                                        <span class="text-[9px] uppercase tracking-widest bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full border border-amber-200">
+                                            flexible
+                                        </span>
+                                    </td>
+
+                                    <td class="p-6 text-center text-xs text-slate-700 font-medium">
+                                        Sesuai Kebutuhan
+                                    </td>
+
+                                    <td class="p-6 text-center font-bold text-amber-700">
+                                        By Request
+                                    </td>
+
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -154,36 +171,55 @@
              x-transition:leave-end="opacity-0 scale-95"
              class="bg-white text-slate-800 w-full max-w-3xl rounded-2xl shadow-2xl flex flex-col max-h-[85vh] border border-slate-200">
             
-            <!-- Modal Header -->
-            <div class="p-6 border-b border-slate-200 flex items-center justify-between bg-slate-50 rounded-t-2xl">
-                <div>
-                    <h3 class="text-slate-900 font-bold text-lg uppercase tracking-wider font-luxury-title">Terms & Conditions</h3>
-                    <p class="text-[10px] text-slate-500 uppercase tracking-widest font-semibold mt-1">Syarat & Ketentuan Sewa Gedung Grand Venue</p>
+
+            <!-- MODAL TERMS & CONDITIONS -->
+            <div x-show="openTerms" 
+                        class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+                        
+                        <div class="bg-white text-slate-800 w-full max-w-3xl rounded-2xl shadow-2xl flex flex-col max-h-[85vh] border border-slate-200">
+                            
+            <!-- Header -->
+            <div class="p-6 border-b border-slate-200 bg-slate-50 rounded-t-2xl">
+                
+                <h3 class="text-slate-900 font-bold text-lg uppercase tracking-wider font-luxury-title">
+                    Terms & Conditions
+                </h3>
+
+                <p class="text-[10px] text-slate-500 uppercase tracking-widest font-semibold mt-1">
+                    Syarat & Ketentuan Sewa Gedung BJSM Venue
+                </p>
+
+            <!-- NEW NOTE -->
+            <div class="mt-4">
+                <div class="flex items-start gap-3 p-3 sm:p-4 rounded-xl border border-amber-200 bg-amber-50">
+                    
+                    <!-- Icon -->
+                    <div class="mt-0.5 text-amber-600">
+                        ⚠️
+                    </div>
+
+                    <!-- Text -->
+                    <div class="text-[11px] sm:text-xs text-amber-800 leading-relaxed font-medium">
+                        <span class="font-semibold uppercase tracking-wide">
+                            Important Notice:
+                        </span>
+                        Seluruh pembayaran yang telah dilakukan, termasuk Down Payment maupun pelunasan,
+                        <span class="font-semibold">
+                            bersifat final dan tidak dapat dikembalikan (non-refundable)
+                        </span>
+                        dalam kondisi apapun.
+                    </div>
+
                 </div>
-                <button @click="openTerms = false" class="text-slate-400 hover:text-slate-600 p-2 focus:outline-none transition" aria-label="Close">
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
             </div>
 
-<!-- MODAL TERMS & CONDITIONS -->
-<div x-show="openTerms" 
-             class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
-            
-            <div class="bg-white text-slate-800 w-full max-w-3xl rounded-2xl shadow-2xl flex flex-col max-h-[85vh] border border-slate-200">
-                
-                <!-- Header -->
-                <div class="p-6 border-b border-slate-200 bg-slate-50 rounded-t-2xl">
-                    <h3 class="text-slate-900 font-bold text-lg uppercase tracking-wider font-luxury-title">Terms & Conditions</h3>
-                    <p class="text-[10px] text-slate-500 uppercase tracking-widest font-semibold mt-1">Syarat & Ketentuan Sewa Gedung Grand Venue</p>
-                </div>
+            </div>
 
                 <!-- Modal Content -->
                 <div class="p-6 sm:p-8 overflow-y-auto space-y-6 text-xs sm:text-sm text-slate-600 font-light leading-relaxed">
                     <section class="space-y-2">
                         <h5 class="font-bold text-slate-900 uppercase tracking-wider">1. Definisi & Ketentuan Umum</h5>
-                        <p>Perjanjian sewa ini berlaku sah antara pihak manajemen <strong>Grand Venue</strong> (selanjutnya disebut "Pengelola") dan badan hukum atau perorangan yang melakukan pemesanan (selanjutnya disebut "Penyewa"). Dengan melakukan pembayaran uang muka, Penyewa dianggap telah membaca, memahami, dan menyetujui seluruh klausul ini.</p>
+                        <p>Perjanjian sewa ini berlaku sah antara pihak manajemen <strong>BJSM Venue</strong> (selanjutnya disebut "Pengelola") dan badan hukum atau perorangan yang melakukan pemesanan (selanjutnya disebut "Penyewa"). Dengan melakukan pembayaran uang muka, Penyewa dianggap telah membaca, memahami, dan menyetujui seluruh klausul ini.</p>
                     </section>
                     <section class="space-y-2">
                         <h5 class="font-bold text-slate-900 uppercase tracking-wider">2. Prosedur Reservasi & Pelunasan</h5>
@@ -216,19 +252,19 @@
                         <h5 class="font-bold text-slate-900 uppercase tracking-wider">6. Kebijakan Vendor Luar Rekanan</h5>
                         <p>Pengelola memiliki daftar vendor rekanan resmi (katering, dekorasi, dokumentasi, sound/lighting). Apabila Penyewa menggunakan jasa vendor dari luar rekanan wajib:</p>
                         <ul class="list-disc pl-5 space-y-1">
-                            <li>Membayar biaya kompensasi operasional (*charge vendor luar*) sesuai klasifikasi tarif Grand Venue.</li>
+                            <li>Membayar biaya kompensasi operasional (*charge vendor luar*) sesuai klasifikasi tarif BJSM Venue.</li>
                             <li>Vendor luar wajib menghadiri *Technical Meeting* resmi dan mematuhi batas daya listrik serta regulasi pemasangan dekorasi yang ditetapkan teknisi gedung.</li>
                         </ul>
                     </section>
                     <section class="space-y-2">
                         <h5 class="font-bold text-slate-900 uppercase tracking-wider">7. Batasan Kapasitas & Ketertiban</h5>
-                        <p>Jumlah tamu dan kru tidak boleh melebihi batas kapasitas maksimal aman ruangan yang telah disepakati untuk menjaga keselamatan bersama. Penyewa beserta pihak ketiga (vendor/tamu) dilarang keras membawa senjata api, senjata tajam, obat-obatan terlarang, serta melakukan aktivitas yang melanggar hukum RI di lingkungan Grand Venue.</p>
+                        <p>Jumlah tamu dan kru tidak boleh melebihi batas kapasitas maksimal aman ruangan yang telah disepakati untuk menjaga keselamatan bersama. Penyewa beserta pihak ketiga (vendor/tamu) dilarang keras membawa senjata api, senjata tajam, obat-obatan terlarang, serta melakukan aktivitas yang melanggar hukum RI di lingkungan BJSM Venue.</p>
                     </section>
                     <section class="space-y-2">
                         <h5 class="font-bold text-slate-900 uppercase tracking-wider">8. Tanggung Jawab & Force Majeure</h5>
                         <ul class="list-disc pl-5 space-y-1">
                             <li>Penyewa bertanggung jawab penuh atas hilangnya barang pribadi milik tamu undangan atau kru selama acara berlangsung.</li>
-                            <li>Pihak Grand Venue dibebaskan dari tuntutan hukum jika terjadi kegagalan atau penundaan acara yang disebabkan oleh keadaan darurat di luar kendali manusia (*Force Majeure*), termasuk namun tidak terbatas pada bencana alam, kebakaran, huru-hara, pemadaman listrik massal kota, atau kebijakan pembatasan resmi dari pemerintah.</li>
+                            <li>Pihak BJSM Venue dibebaskan dari tuntutan hukum jika terjadi kegagalan atau penundaan acara yang disebabkan oleh keadaan darurat di luar kendali manusia (*Force Majeure*), termasuk namun tidak terbatas pada bencana alam, kebakaran, huru-hara, pemadaman listrik massal kota, atau kebijakan pembatasan resmi dari pemerintah.</li>
                         </ul>
                     </section>
                 </div>
