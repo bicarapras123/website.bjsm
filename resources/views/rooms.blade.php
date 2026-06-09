@@ -42,7 +42,7 @@
             </p>
             
             <div class="mt-10 sm:mt-12 flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-5 w-full max-w-md mx-auto sm:max-w-none">
-                <a href="https://wa.me/6281809008585" target="_blank" class="w-full sm:w-auto bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-bold px-10 py-4 sm:py-5 rounded-xl text-xs uppercase tracking-widest transition duration-300 shadow-2xl shadow-amber-500/20 text-center flex items-center justify-center gap-2">
+                <a href="https://wa.me/6281908088368" target="_blank" class="w-full sm:w-auto bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-bold px-10 py-4 sm:py-5 rounded-xl text-xs uppercase tracking-widest transition duration-300 shadow-2xl shadow-amber-500/20 text-center flex items-center justify-center gap-2">
                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12.031 6.172c-3.187 0-5.781 2.594-5.781 5.781 0 1.016.266 1.984.734 2.836l-1.078 3.938 4.047-1.078c.813.438 1.734.688 2.703.688 3.187 0 5.781-2.594 5.781-5.781 0-3.187-2.594-5.781-5.781-5.781zm0 10.781c-.844 0-1.641-.234-2.328-.625l-1.641.438.438-1.609c-.422-.734-.672-1.578-.672-2.484 0-2.656 2.156-4.813 4.813-4.813 2.656 0 4.813 2.156 4.813 4.813 0 2.656-2.156 4.813-4.813 4.813z"/>
                     </svg>
@@ -62,7 +62,7 @@
             <div class="mb-16 border-b border-slate-200 pb-6" data-aos="fade-right" data-aos-duration="800">
                 <span class="text-xs font-bold text-emerald-700 uppercase tracking-[0.2em] block mb-2">Visual Showcase</span>
                 <h2 class="text-xl sm:text-3xl font-bold text-slate-900 uppercase tracking-widest font-luxury-title flex items-center gap-3">
-                    <span class="w-2 h-6 bg-amber-500 block rounded"></span> Galeri Dokemuntasi Ruangan
+                    <span class="w-2 h-6 bg-amber-500 block rounded"></span> Galeri Ruangan
                 </h2>
                 <p class="text-slate-500 text-xs sm:text-sm mt-3 font-light max-w-3xl leading-relaxed">
                     Kilasan realisasi berbagai momentum mahakarya yang telah terselenggara di BJSM Venue.
@@ -71,9 +71,9 @@
 
             @php
                 $galleries = [
-                    ['img' => 'doc1.jpeg', 'title' => 'Dokumentasi I ', 'desc' => 'Simulasi tata letak jamuan makan formal.'],
-                    ['img' => 'doc2.jpeg', 'title' => 'Dokumentasi II', 'desc' => 'Integrasi teknologi multimedia nirkabel.'],
-                    ['img' => 'doc3.jpeg', 'title' => 'Dokumentasi III', 'desc' => 'Sistem insulasi suara bertaraf studio.'],
+                    ['img' => 'doc1.jpeg', 'title' => '', 'desc' => 'Simulasi tata letak jamuan makan formal.'],
+                    ['img' => 'doc2.jpeg', 'title' => '', 'desc' => 'Integrasi teknologi multimedia nirkabel.'],
+                    ['img' => 'doc3.jpeg', 'title' => '', 'desc' => 'Sistem insulasi suara bertaraf studio.'],
                 ];
             @endphp
 
