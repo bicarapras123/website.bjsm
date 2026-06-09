@@ -102,8 +102,8 @@
                         <div class="space-y-6">
                             <div>
                                 <span class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">WhatsApp Dedicated</span>
-                                <a href="https://wa.me/6281908088368" target="_blank" class="text-sm font-bold text-slate-900 hover:text-emerald-700 transition tracking-wide">
-                                +62 8190-8088-368
+                                <a href="https://wa.me/6281319388855" target="_blank" class="text-sm font-bold text-slate-900 hover:text-emerald-700 transition tracking-wide">
+                                081-3193-88855
                                 </a>
                             </div>
                             <div>
