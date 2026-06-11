@@ -15,8 +15,8 @@ class BookingController extends Controller
      */
     private function getAccessToken()
     {
-        $url = env('PAYMENT_BASE_URL') . '/gateway/IPGAPI/v1/token';
-        $auth = base64_encode(env('PAYMENT_CLIENT_ID') . ':' . env('PAYMENT_CLIENT_SECRET'));
+        $url = config('services.yokke.base_url') . '/gateway/IPGAPI/v1/token';
+        $auth = base64_encode(config('services.yokke.client_id') . ':' . config('services.yokke.client_secret'));
     
         $response = Http::withoutVerifying() // Abaikan SSL untuk testing lokal
             ->withHeaders([
@@ -40,7 +40,6 @@ class BookingController extends Controller
         return null;
     }
 
-    
     public function index()
     {
         return view('booking.index');
@@ -109,9 +108,9 @@ class BookingController extends Controller
         // PANGGIL INQUIRY DENGAN TOKEN
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $token,
-            'X-Api-Key'     => env('PAYMENT_API_KEY'),
+            'X-Api-Key'     => config('services.yokke.api_key'),
             'Content-Type'  => 'application/json',
-        ])->post(env('PAYMENT_BASE_URL') . '/gateway/IPGAPI/v1/inquiries', [
+        ])->post(config('services.yokke.base_url') . '/gateway/IPGAPI/v1/inquiries', [
             "amount"       => (float)$basePrice,
             "currency"     => "IDR",
             "referenceUrl" => url('/booking/success'),
@@ -159,6 +158,6 @@ class BookingController extends Controller
 
     private function isValidSignature(Request $request, $signature)
     {
-        return hash_equals(hash_hmac('sha256', $request->getContent(), env('PAYMENT_SECRET_KEY')), (string) $signature);
+        return hash_equals(hash_hmac('sha256', $request->getContent(), config('services.yokke.secret_key')), (string) $signature);
     }
 }

@@ -35,4 +35,13 @@ return [
         ],
     ],
 
+    'yokke' => [
+        'client_id'     => env('PAYMENT_CLIENT_ID'),
+        'client_secret' => env('PAYMENT_CLIENT_SECRET'),
+        'api_key'       => env('PAYMENT_API_KEY'),
+        'secret_key'    => env('PAYMENT_SECRET_KEY'),
+        'merchant_id'   => env('PAYMENT_MERCHANT_ID'),
+        'base_url'      => env('PAYMENT_BASE_URL'),
+    ],
+
 ];
