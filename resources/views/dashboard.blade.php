@@ -23,12 +23,13 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-4">
                 <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm"><p class="text-xs font-semibold text-slate-400 uppercase">Total Pengguna</p><h4 class="text-2xl font-bold text-slate-800 mt-1">{{ number_format($totalUsers) }}</h4></div>
                 <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm"><p class="text-xs font-semibold text-slate-400 uppercase">Total Booking</p><h4 class="text-2xl font-bold text-slate-800 mt-1">{{ number_format($totalBookings) }}</h4></div>
                 <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm"><p class="text-xs font-semibold text-slate-400 uppercase">Pending</p><h4 class="text-2xl font-bold text-amber-600 mt-1">{{ number_format($totalPending) }}</h4></div>
                 <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm"><p class="text-xs font-semibold text-slate-400 uppercase">Confirmed</p><h4 class="text-2xl font-bold text-emerald-600 mt-1">{{ number_format($totalConfirmed) }}</h4></div>
                 <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm"><p class="text-xs font-semibold text-slate-400 uppercase">Cancelled</p><h4 class="text-2xl font-bold text-rose-600 mt-1">{{ number_format($totalCancelled) }}</h4></div>
+                <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm"><p class="text-xs font-semibold text-slate-400 uppercase">Sudah Dibayar</p><h4 class="text-2xl font-bold text-emerald-600 mt-1">{{ number_format($totalPaid) }}</h4></div>
                 <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm">
                     <p class="text-xs font-semibold text-slate-400 uppercase">Revenue</p>
                     <h4 class="text-lg font-bold text-emerald-600 mt-1">Rp {{ number_format($totalRevenue, 0, ',', '.') }}</h4>
@@ -55,8 +56,9 @@
                                 <th class="p-4">Event</th>
                                 <th class="p-4">Package</th>
                                 <th class="p-4">Pax</th>
-                                <th class="p-4">Grand Total</th> <th class="p-4">Status</th>
-                                <th class="p-4 text-center">PDF</th>
+                                <th class="p-4">Grand Total</th> 
+                                <th class="p-4">Status</th>
+                                <th class="p-4">Payment</th> <th class="p-4 text-center">PDF</th>
                             </tr>
                         </thead>
                         <tbody class="text-sm text-slate-600 divide-y divide-slate-100 whitespace-nowrap">
@@ -78,12 +80,19 @@
                                             </select>
                                         </form>
                                     </td>
+                                    <td class="p-4">
+                                        @if($booking->payment_status == 'paid')
+                                            <span class="px-2 py-1 bg-emerald-100 text-emerald-700 text-xs font-bold rounded-lg uppercase">Paid</span>
+                                        @else
+                                            <span class="px-2 py-1 bg-rose-100 text-rose-700 text-xs font-bold rounded-lg uppercase">Unpaid</span>
+                                        @endif
+                                    </td>
                                     <td class="p-4 text-center">
                                         <a href="{{ route('dashboard.downloadPdf', $booking->id) }}" class="text-indigo-600">PDF</a>
                                     </td>
                                 </tr>
                             @empty
-                                <tr><td colspan="8" class="p-12 text-center">Data tidak ditemukan.</td></tr>
+                                <tr><td colspan="9" class="p-12 text-center">Data tidak ditemukan.</td></tr>
                             @endforelse
                         </tbody>
                     </table>

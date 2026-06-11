@@ -55,4 +55,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// =========================================================================
+// RUTE WEBHOOK PEMBAYARAN
+// =========================================================================
+Route::post('/webhook/payment', [BookingController::class, 'handleWebhook'])
+    ->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]);
+
 require __DIR__.'/auth.php';

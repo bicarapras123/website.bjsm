@@ -19,8 +19,11 @@ class DashboardController extends Controller
         $totalConfirmed = SimpleLuxuryBooking::where('status', 'confirmed')->count();
         $totalCancelled = SimpleLuxuryBooking::where('status', 'cancelled')->count();
         
-        // PASTIKAN BARIS INI ADA
-        $totalRevenue = SimpleLuxuryBooking::where('status', 'confirmed')->sum('grand_total');
+        // Hitung berapa booking yang sudah dibayar
+        $totalPaid = SimpleLuxuryBooking::where('payment_status', 'paid')->count();
+        
+        // Revenue sekarang hanya dari yang sudah 'paid'
+        $totalRevenue = SimpleLuxuryBooking::where('payment_status', 'paid')->sum('grand_total');
     
         $search = $request->input('search');
         $query = SimpleLuxuryBooking::latest();
@@ -35,17 +38,18 @@ class DashboardController extends Controller
     
         $recentBookings = $query->paginate(5);
     
-        // PASTIKAN 'totalRevenue' ADA DI DALAM COMPACT
         return view('dashboard', compact(
             'totalUsers', 
             'totalBookings', 
             'totalPending', 
             'totalConfirmed', 
             'totalCancelled', 
-            'totalRevenue', // Tambahkan ini
+            'totalPaid',      // Tambahkan ini
+            'totalRevenue', 
             'recentBookings'
         ));
     }
+    
     public function updateStatus(Request $request, $id)
     {
         $request->validate([

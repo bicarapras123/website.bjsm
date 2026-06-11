@@ -34,6 +34,7 @@ class SimpleLuxuryBooking extends Model
         'grand_total',
         'currency',
         'status',
+        'payment_status',
         'notes',
     ];
 
