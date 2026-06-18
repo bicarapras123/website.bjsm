@@ -93,56 +93,92 @@
         </main>
 
         <div id="paymentModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm hidden">
-            <div class="bg-slate-900 border border-white/10 p-8 rounded-2xl max-w-sm w-full mx-4">
-                <h3 class="text-xl font-black text-white text-center mb-6">Pilih Metode Pembayaran</h3>
-                <div class="space-y-3">
-                    <div class="method-disabled w-full bg-slate-800 p-3 rounded-xl border border-white/5 flex justify-between items-center text-slate-400">QRIS <span>Soon</span></div>
-                    <div class="method-disabled w-full bg-slate-800 p-3 rounded-xl border border-white/5 flex justify-between items-center text-slate-400">E-Wallet <span>Soon</span></div>
-                    <button onclick="openCardModal()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-3 rounded-xl transition">Card Payment</button>
-                </div>
-                <button onclick="closeModal()" class="w-full mt-6 text-slate-500 text-sm">Batal</button>
+    <div class="bg-slate-900 border border-white/10 p-8 rounded-2xl max-w-sm w-full mx-4">
+        <h3 class="text-xl font-black text-white text-center mb-6">
+            Pilih Metode Pembayaran
+        </h3>
+
+        <div class="space-y-3">
+            <div class="method-disabled w-full bg-slate-800 p-3 rounded-xl border border-white/5 flex justify-between items-center text-slate-400">
+                QRIS <span>Soon</span>
             </div>
+
+            <div class="method-disabled w-full bg-slate-800 p-3 rounded-xl border border-white/5 flex justify-between items-center text-slate-400">
+                E-Wallet <span>Soon</span>
+            </div>
+
+            <button
+                onclick="submitForm('Card Payment')"
+                class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-3 rounded-xl transition">
+                Card Payment
+            </button>
         </div>
 
-        <div id="cardModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm hidden">
-            <div class="bg-slate-900 border border-white/10 p-8 rounded-2xl max-w-sm w-full mx-4">
-                <h3 class="text-xl font-black text-white text-center mb-6">Detail Card Payment</h3>
-                <div class="space-y-3">
-                    <input type="text" placeholder="Nomor Kartu" class="w-full bg-white text-slate-900 p-3 rounded-lg border-2 border-slate-700">
-                    <div class="grid grid-cols-2 gap-3"><input type="text" placeholder="MM/YY" class="bg-white text-slate-900 p-3 rounded-lg border-2 border-slate-700"><input type="text" placeholder="CVV" class="bg-white text-slate-900 p-3 rounded-lg border-2 border-slate-700"></div>
-                    <button onclick="submitForm('Card Payment')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl mt-4 transition">Bayar Sekarang</button>
-                </div>
-                <button onclick="closeCardModal()" class="w-full mt-6 text-slate-500 text-sm">Kembali</button>
-            </div>
-        </div>
-
-        @include('components.footer')
+        <button onclick="closeModal()" class="w-full mt-6 text-slate-500 text-sm">
+            Batal
+        </button>
     </div>
+</div>
 
-    <script>
-        const packageSelect = document.getElementById('venue_package');
-        const priceDisplay = document.getElementById('price_display');
-        const priceText = document.getElementById('total_price_text');
-        const notesWrapper = document.getElementById('custom_notes_wrapper');
-        const notesTextarea = document.getElementById('notes_textarea');
-        const modal = document.getElementById('paymentModal');
-        const cardModal = document.getElementById('cardModal');
-        const form = document.getElementById('reservationForm');
+@include('components.footer')
+</div>
 
-        packageSelect.addEventListener('change', () => {
-            const val = packageSelect.value;
-            const prices = {'Paket Small Meeting': 5000000, 'Paket Half Day Meeting': 10000000, 'Paket Full Day Meeting': 15000000, 'Paket Fullboard Meeting': 20000000};
-            if (prices[val]) { priceDisplay.classList.remove('hidden'); priceText.innerText = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(prices[val]); }
-            else { priceDisplay.classList.add('hidden'); }
-            if (val === 'Paket Convention Centre') { notesWrapper.classList.remove('hidden'); notesTextarea.setAttribute('required', 'required'); }
-            else { notesWrapper.classList.add('hidden'); notesTextarea.removeAttribute('required'); notesTextarea.value = ''; }
-        });
+<script>
+    const packageSelect = document.getElementById('venue_package');
+    const priceDisplay = document.getElementById('price_display');
+    const priceText = document.getElementById('total_price_text');
+    const notesWrapper = document.getElementById('custom_notes_wrapper');
+    const notesTextarea = document.getElementById('notes_textarea');
+    const modal = document.getElementById('paymentModal');
+    const form = document.getElementById('reservationForm');
 
-        function openModal() { if (form.checkValidity()) modal.classList.remove('hidden'); else form.reportValidity(); }
-        function closeModal() { modal.classList.add('hidden'); }
-        function openCardModal() { modal.classList.add('hidden'); cardModal.classList.remove('hidden'); }
-        function closeCardModal() { cardModal.classList.add('hidden'); modal.classList.remove('hidden'); }
-        function submitForm(method) { document.getElementById('payment_method').value = method; form.submit(); }
-    </script>
+    packageSelect.addEventListener('change', () => {
+        const val = packageSelect.value;
+
+        const prices = {
+            'Paket Small Meeting': 5000000,
+            'Paket Half Day Meeting': 10000000,
+            'Paket Full Day Meeting': 15000000,
+            'Paket Fullboard Meeting': 20000000
+        };
+
+        if (prices[val]) {
+            priceDisplay.classList.remove('hidden');
+            priceText.innerText = new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                maximumFractionDigits: 0
+            }).format(prices[val]);
+        } else {
+            priceDisplay.classList.add('hidden');
+        }
+
+        if (val === 'Paket Convention Centre') {
+            notesWrapper.classList.remove('hidden');
+            notesTextarea.setAttribute('required', 'required');
+        } else {
+            notesWrapper.classList.add('hidden');
+            notesTextarea.removeAttribute('required');
+            notesTextarea.value = '';
+        }
+    });
+
+    function openModal() {
+        if (form.checkValidity()) {
+            modal.classList.remove('hidden');
+        } else {
+            form.reportValidity();
+        }
+    }
+
+    function closeModal() {
+        modal.classList.add('hidden');
+    }
+
+    function submitForm(method) {
+        document.getElementById('payment_method').value = method;
+        form.submit();
+    }
+</script>
 </body>
 </html>

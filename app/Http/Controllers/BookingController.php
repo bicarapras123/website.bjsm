@@ -113,7 +113,7 @@ class BookingController extends Controller
         ])->post(config('services.yokke.base_url') . '/gateway/IPGAPI/v1/inquiries', [
             "amount"       => (float)$basePrice,
             "currency"     => "IDR",
-            "referenceUrl" => url('/booking/success'),
+            //"referenceUrl" => url('/booking/success'),
             "customer"     => [
                 "name"        => $validated['customer_name'],
                 "email"       => $validated['customer_email'],
