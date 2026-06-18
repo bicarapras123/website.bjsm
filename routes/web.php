@@ -39,6 +39,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // RUTE BARU: Download PDF
     Route::get('/dashboard/download/{id}', [DashboardController::class, 'downloadPdf'])->name('dashboard.downloadPdf');
+
+    // Tambahkan di dalam middleware(['auth', 'verified'])
+    Route::delete('/dashboard/booking/{id}', [DashboardController::class, 'destroy'])->name('dashboard.destroy');
     
     // Fitur Venue Booking Admin
     Route::get('/venue-booking/create', [VenueBookingController::class, 'create'])->name('venue.create');

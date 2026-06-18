@@ -32,7 +32,9 @@ class DashboardController extends Controller
             $query->where(function($q) use ($search) {
                 $q->where('customer_name', 'LIKE', "%{$search}%")
                   ->orWhere('customer_email', 'LIKE', "%{$search}%")
-                  ->orWhere('customer_phone', 'LIKE', "%{$search}%");
+                  ->orWhere('customer_phone', 'LIKE', "%{$search}%")
+                  ->orWhere('booking_code', 'LIKE', "%{$search}%")
+                  ->orWhere('notes', 'LIKE', "%{$search}%");
             });
         }
     
@@ -94,4 +96,13 @@ class DashboardController extends Controller
         
         return $pdf->download('Booking_'.$booking->id.'.pdf');
     }
+
+    public function destroy($id)
+{
+    $booking = SimpleLuxuryBooking::findOrFail($id);
+    $booking->delete();
+
+    return redirect()->route('dashboard')->with('success', 'Data booking berhasil dihapus!');
+}
+
 }

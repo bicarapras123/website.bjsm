@@ -35,6 +35,8 @@
     <div class="content-wrapper">
         <table>
             <tr><th>ID Booking</th><td>#{{ $booking->id }}</td></tr>
+            <tr><th>Kode Booking</th><td style="font-weight: bold; color: #4f46e5;">{{ $booking->booking_code }}</td></tr>
+            
             <tr><th>Nama</th><td>{{ $booking->customer_name }}</td></tr>
             <tr><th>Email</th><td>{{ $booking->customer_email }}</td></tr>
             <tr><th>No. Telepon</th><td>{{ $booking->customer_phone }}</td></tr>
@@ -44,6 +46,9 @@
             <tr><th>Waktu</th><td>{{ $booking->start_time }} s/d {{ $booking->end_time }}</td></tr>
             <tr><th>Paket</th><td>{{ $booking->venue_package }}</td></tr>
             <tr><th>Jumlah Pax</th><td>{{ number_format($booking->total_pax) }} orang</td></tr>
+            <tr><th>Layout Kursi</th><td>{{ $booking->room_layout }}</td></tr>
+            
+            <tr><th>Catatan</th><td>{{ $booking->notes ?? '-' }}</td></tr>
             
             <tr class="total-row">
                 <th class="total-label">Total Harga (Grand Total)</th>
@@ -52,8 +57,6 @@
                 </td>
             </tr>
             
-            <tr><th>Layout Kursi</th><td>{{ $booking->room_layout }}</td></tr>
-            <tr><th>Catatan</th><td>{{ $booking->notes ?? '-' }}</td></tr>
             <tr>
                 <th>Status</th>
                 <td>
