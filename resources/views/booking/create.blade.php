@@ -68,17 +68,33 @@
                             <div class="space-y-1.5">
                                 <label class="text-xs font-bold text-slate-300 uppercase tracking-wider">Pilihan Kategori Paket</label>
                                 <select name="venue_package" id="venue_package" required class="w-full bg-white border-2 border-slate-700 text-slate-900 font-bold rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition">
-                                    <option value="" disabled selected>-- Pilih Paket Meeting --</option>
-                                    <option value="Paket Small Meeting">Paket Small Meeting (Rp 5.000.000)</option>
-                                    <option value="Paket Half Day Meeting">Paket Half Day Meeting (Rp 10.000.000)</option>
-                                    <option value="Paket Full Day Meeting">Paket Full Day Meeting (Rp 15.000.000)</option>
-                                    <option value="Paket Fullboard Meeting">Paket Fullboard Meeting (Rp 20.000.000)</option>
-                                    <option value="Paket Convention Centre">Paket Convention Centre (Custom)</option>
+                                <option value="Paket Small Meeting">Paket Small Meeting (Rp 5.000.000)</option>
+                                <option value="Paket Half Day Meeting">Paket Half Day Meeting (Rp 10.000.000)</option>
+                                <option value="Paket Full Day Meeting">Paket Full Day Meeting (Rp 15.000.000)</option>
+                                <option value="Paket Fullboard Meeting">Paket Fullboard Meeting (Rp 20.000.000)</option>
+                                <option value="Paket Executive Meeting">Paket Executive Meeting (Rp 25.000.000)</option>
+                                <option value="Paket Premium Meeting">Paket Premium Meeting (Rp 30.000.000)</option>
+                                <option value="Paket Corporate Meeting">Paket Corporate Meeting (Rp 35.000.000)</option>
+                                <option value="Paket Grand Ballroom">Paket Grand Ballroom (Rp 40.000.000)</option>
+                                <option value="Paket Convention Centre">Paket Convention Centre (Rp 45.000.000)</option>
+                                <option value="Paket Luxury Convention">Paket Luxury Convention (Rp 50.000.000)</option>
+                                <option value="Paket Custom">Paket Custom (> Rp 50.000.000)</option>
                                 </select>
                             </div>
                             <div class="space-y-1.5"><label class="text-xs font-bold text-slate-300 uppercase tracking-wider">Jumlah Tamu / Pax</label><input type="number" name="total_pax" id="total_pax" min="1" required class="w-full bg-white border-2 border-slate-700 text-slate-900 font-semibold rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition"></div>
                         </div>
                         <div id="price_display" class="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4 text-center hidden"><p class="text-amber-400 text-xs font-bold uppercase tracking-widest">Harga Paket</p><h4 id="total_price_text" class="text-2xl font-black text-white mt-1">Rp 0</h4></div>
+                        <div id="custom_price_wrapper" class="space-y-1.5 hidden mt-4">
+                            <label class="text-xs font-bold text-slate-300 uppercase tracking-wider">
+                                Nominal Paket Custom
+                            </label>
+                            <input
+                            type="text"
+                            id="custom_price"
+                            name="custom_price"
+                            placeholder="Rp 50.000.001"
+                            class="w-full bg-white border-2 border-slate-700 text-slate-900 font-semibold rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition">
+                            </div>
                         <div class="space-y-1.5"><label class="text-xs font-bold text-slate-300 uppercase tracking-wider">Susunan Kursi (Layout)</label><select name="room_layout" id="room_layout" required class="w-full bg-white border-2 border-slate-700 text-slate-900 font-bold rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition"><option value="Standar">Standar</option><option value="Custom Layout">Custom</option></select></div>
                         <div id="custom_notes_wrapper" class="space-y-1.5 hidden"><label class="text-xs font-bold text-slate-300 uppercase tracking-wider">Catatan Tambahan</label><textarea name="notes" id="notes_textarea" rows="3" class="w-full bg-white border-2 border-slate-700 text-slate-900 font-semibold rounded-xl px-4 py-3 text-sm"></textarea></div>
                     </div>
@@ -129,8 +145,29 @@
     const priceText = document.getElementById('total_price_text');
     const notesWrapper = document.getElementById('custom_notes_wrapper');
     const notesTextarea = document.getElementById('notes_textarea');
+    const customPriceWrapper = document.getElementById('custom_price_wrapper');
+    const customPriceInput = document.getElementById('custom_price');
     const modal = document.getElementById('paymentModal');
     const form = document.getElementById('reservationForm');
+
+    // FORMAT RUPIAH (DISPLAY SAJA)
+    if (customPriceInput) {
+        customPriceInput.addEventListener('input', function () {
+            let value = this.value.replace(/\D/g, '');
+
+            if (value === '') {
+                this.value = '';
+                this.setAttribute('data-value', '');
+                return;
+            }
+
+            // simpan angka asli (INI YANG AKAN DIPAKAI BACKEND)
+            this.setAttribute('data-value', value);
+
+            // tampilkan format rupiah
+            this.value = new Intl.NumberFormat('id-ID').format(value);
+        });
+    }
 
     packageSelect.addEventListener('change', () => {
         const val = packageSelect.value;
@@ -139,7 +176,13 @@
             'Paket Small Meeting': 5000000,
             'Paket Half Day Meeting': 10000000,
             'Paket Full Day Meeting': 15000000,
-            'Paket Fullboard Meeting': 20000000
+            'Paket Fullboard Meeting': 20000000,
+            'Paket Executive Meeting': 25000000,
+            'Paket Premium Meeting': 30000000,
+            'Paket Corporate Meeting': 35000000,
+            'Paket Grand Ballroom': 40000000,
+            'Paket Convention Centre': 45000000,
+            'Paket Luxury Convention': 50000000
         };
 
         if (prices[val]) {
@@ -153,10 +196,20 @@
             priceDisplay.classList.add('hidden');
         }
 
-        if (val === 'Paket Convention Centre') {
+        if (val === 'Paket Custom') {
+            customPriceWrapper.classList.remove('hidden');
+            customPriceInput.setAttribute('required', 'required');
+
             notesWrapper.classList.remove('hidden');
             notesTextarea.setAttribute('required', 'required');
+
+            priceDisplay.classList.add('hidden');
         } else {
+            customPriceWrapper.classList.add('hidden');
+            customPriceInput.removeAttribute('required');
+            customPriceInput.value = '';
+            customPriceInput.setAttribute('data-value', '');
+
             notesWrapper.classList.add('hidden');
             notesTextarea.removeAttribute('required');
             notesTextarea.value = '';
@@ -176,6 +229,13 @@
     }
 
     function submitForm(method) {
+
+        // 🔥 INI KUNCINYA: kirim angka asli, bukan "Rp ..."
+        if (customPriceInput) {
+            const raw = customPriceInput.getAttribute('data-value');
+            customPriceInput.value = raw;
+        }
+
         document.getElementById('payment_method').value = method;
         form.submit();
     }

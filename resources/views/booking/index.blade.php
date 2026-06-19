@@ -96,37 +96,139 @@
                                     <td class="p-6 text-center text-xs">2 Jam</td>
                                     <td class="p-6 text-center font-bold text-slate-800">Rp 5.000.000</td>
                                 </tr>
+
                                 <tr class="hover:bg-slate-50 transition-colors">
                                     <td class="p-6 font-bold text-slate-900 text-sm">Half Day Meeting</td>
                                     <td class="p-6 text-center text-xs">4 Jam</td>
                                     <td class="p-6 text-center font-bold text-slate-800">Rp 10.000.000</td>
                                 </tr>
+
                                 <tr class="hover:bg-slate-50 transition-colors">
                                     <td class="p-6 font-bold text-slate-900 text-sm">Full Day Meeting</td>
                                     <td class="p-6 text-center text-xs">8 Jam</td>
                                     <td class="p-6 text-center font-bold text-slate-800">Rp 15.000.000</td>
                                 </tr>
+
                                 <tr class="hover:bg-slate-50 transition-colors">
                                     <td class="p-6 font-bold text-slate-900 text-sm">Fullboard Meeting</td>
                                     <td class="p-6 text-center text-xs">24 Jam</td>
                                     <td class="p-6 text-center font-bold text-slate-800">Rp 20.000.000</td>
                                 </tr>
-                                <tr class="hover:bg-amber-50 transition-colors bg-gradient-to-r from-amber-50/40 to-transparent">
-                                    <td class="p-6 font-bold text-amber-700 text-sm flex items-center gap-2">
-                                        Convention Centre (Custom)
-                                        <span class="text-[9px] uppercase tracking-widest bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full border border-amber-200">
-                                            flexible
-                                        </span>
-                                    </td>
 
-                                    <td class="p-6 text-center text-xs text-slate-700 font-medium">
-                                        Sesuai Kebutuhan
-                                    </td>
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="p-6 font-bold text-slate-900 text-sm">Executive Meeting</td>
+                                    <td class="p-6 text-center text-xs">Flexible</td>
+                                    <td class="p-6 text-center font-bold text-slate-800">Rp 25.000.000</td>
+                                </tr>
 
-                                    <td class="p-6 text-center font-bold text-amber-700">
-                                        By Request
-                                    </td>
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="p-6 font-bold text-slate-900 text-sm">Premium Meeting</td>
+                                    <td class="p-6 text-center text-xs">Flexible</td>
+                                    <td class="p-6 text-center font-bold text-slate-800">Rp 30.000.000</td>
+                                </tr>
 
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="p-6 font-bold text-slate-900 text-sm">Corporate Meeting</td>
+                                    <td class="p-6 text-center text-xs">Flexible</td>
+                                    <td class="p-6 text-center font-bold text-slate-800">Rp 35.000.000</td>
+                                </tr>
+
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="p-6 font-bold text-slate-900 text-sm">Grand Ballroom</td>
+                                    <td class="p-6 text-center text-xs">Flexible</td>
+                                    <td class="p-6 text-center font-bold text-slate-800">Rp 40.000.000</td>
+                                </tr>
+
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="p-6 font-bold text-slate-900 text-sm">Convention Centre</td>
+                                    <td class="p-6 text-center text-xs">Flexible</td>
+                                    <td class="p-6 text-center font-bold text-slate-800">Rp 45.000.000</td>
+                                </tr>
+
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="p-6 font-bold text-slate-900 text-sm">Luxury Convention</td>
+                                    <td class="p-6 text-center text-xs">Flexible</td>
+                                    <td class="p-6 text-center font-bold text-slate-800">Rp 50.000.000</td>
+                                </tr>
+
+                                <tbody class="divide-y divide-slate-100 text-slate-600">
+    <tr class="hover:bg-slate-50 transition-colors">
+        <td class="p-6 font-bold text-slate-900 text-sm">Small Meeting</td>
+        <td class="p-6 text-center text-xs">2 Jam</td>
+        <td class="p-6 text-center font-bold text-slate-800">Rp 5.000.000</td>
+    </tr>
+
+    <tr class="hover:bg-slate-50 transition-colors">
+        <td class="p-6 font-bold text-slate-900 text-sm">Half Day Meeting</td>
+        <td class="p-6 text-center text-xs">4 Jam</td>
+        <td class="p-6 text-center font-bold text-slate-800">Rp 10.000.000</td>
+    </tr>
+
+    <tr class="hover:bg-slate-50 transition-colors">
+        <td class="p-6 font-bold text-slate-900 text-sm">Full Day Meeting</td>
+        <td class="p-6 text-center text-xs">8 Jam</td>
+        <td class="p-6 text-center font-bold text-slate-800">Rp 15.000.000</td>
+    </tr>
+
+    <tr class="hover:bg-slate-50 transition-colors">
+        <td class="p-6 font-bold text-slate-900 text-sm">Fullboard Meeting</td>
+        <td class="p-6 text-center text-xs">24 Jam</td>
+        <td class="p-6 text-center font-bold text-slate-800">Rp 20.000.000</td>
+    </tr>
+
+    <tr class="hover:bg-slate-50 transition-colors">
+        <td class="p-6 font-bold text-slate-900 text-sm">Executive Meeting</td>
+        <td class="p-6 text-center text-xs">Flexible</td>
+        <td class="p-6 text-center font-bold text-slate-800">Rp 25.000.000</td>
+    </tr>
+
+    <tr class="hover:bg-slate-50 transition-colors">
+        <td class="p-6 font-bold text-slate-900 text-sm">Premium Meeting</td>
+        <td class="p-6 text-center text-xs">Flexible</td>
+        <td class="p-6 text-center font-bold text-slate-800">Rp 30.000.000</td>
+    </tr>
+
+    <tr class="hover:bg-slate-50 transition-colors">
+        <td class="p-6 font-bold text-slate-900 text-sm">Corporate Meeting</td>
+        <td class="p-6 text-center text-xs">Flexible</td>
+        <td class="p-6 text-center font-bold text-slate-800">Rp 35.000.000</td>
+    </tr>
+
+    <tr class="hover:bg-slate-50 transition-colors">
+        <td class="p-6 font-bold text-slate-900 text-sm">Grand Ballroom</td>
+        <td class="p-6 text-center text-xs">Flexible</td>
+        <td class="p-6 text-center font-bold text-slate-800">Rp 40.000.000</td>
+    </tr>
+
+    <tr class="hover:bg-slate-50 transition-colors">
+        <td class="p-6 font-bold text-slate-900 text-sm">Convention Centre</td>
+        <td class="p-6 text-center text-xs">Flexible</td>
+        <td class="p-6 text-center font-bold text-slate-800">Rp 45.000.000</td>
+    </tr>
+
+    <tr class="hover:bg-slate-50 transition-colors">
+        <td class="p-6 font-bold text-slate-900 text-sm">Luxury Convention</td>
+        <td class="p-6 text-center text-xs">Flexible</td>
+        <td class="p-6 text-center font-bold text-slate-800">Rp 50.000.000</td>
+    </tr>
+
+    <tr class="hover:bg-amber-50 transition-colors bg-gradient-to-r from-amber-50/40 to-transparent">
+        <td class="p-6 font-bold text-amber-700 text-sm flex items-center gap-2">
+            Custom Package
+            <span class="text-[9px] uppercase tracking-widest bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full border border-amber-200">
+                flexible
+            </span>
+        </td>
+
+        <td class="p-6 text-center text-xs">Flexible</td>
+
+        <td class="p-6 text-center font-bold text-amber-700">
+            > Rp 50.000.000 (Lebih dari 50jt)
+        </td>
+    </tr>
+</tbody>
+                            </tbody>
+ 
                                 </tr>
                             </tbody>
                         </table>
