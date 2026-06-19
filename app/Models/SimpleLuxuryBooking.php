@@ -9,17 +9,10 @@ class SimpleLuxuryBooking extends Model
 {
     use HasFactory;
 
-    /**
-     * Menentukan nama tabel secara eksplisit di database
-     * (Penting karena nama tabel Anda menggunakan format snake_case jamak)
-     */
     protected $table = 'simple_luxury_bookings';
 
-    /**
-     * Mendaftarkan kolom mana saja yang boleh diisi melalui Form/Controller
-     * (Standar keamanan bintang 5 untuk mencegah SQL Injection / manipulasi data)
-     */
     protected $fillable = [
+        'booking_code',      // TAMBAHKAN INI
         'customer_name',
         'customer_email',
         'customer_phone',
@@ -33,17 +26,35 @@ class SimpleLuxuryBooking extends Model
         'room_layout',
         'grand_total',
         'currency',
-        'status',
-        'payment_status',
+        'status',           // TAMBAHKAN INI
+        'payment_status',    // TAMBAHKAN INI
         'notes',
     ];
 
-    /**
-     * Otomatis mengubah format data tanggal saat dipanggil di View/Blade
-     */
     protected $casts = [
         'event_date' => 'date',
         'total_pax'  => 'integer',
         'grand_total' => 'decimal:2',
     ];
+
+    // OTOMATISASI DATA BARU
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($booking) {
+            // Generate kode booking jika belum ada
+            if (empty($booking->booking_code)) {
+                $booking->booking_code = 'BJSM-' . date('Ymd') . '-' . strtoupper(bin2hex(random_bytes(3)));
+            }
+            // Set status awal
+            if (empty($booking->status)) {
+                $booking->status = 'pending';
+            }
+            // Set status bayar awal
+            if (empty($booking->payment_status)) {
+                $booking->payment_status = 'unpaid';
+            }
+        });
+    }
 }

@@ -76,7 +76,11 @@ class BookingController extends Controller
             default                    => 0,
         };
 
+        // Menghasilkan 6 karakter acak alfanumerik setelah prefix 'BJSM'
+        $bookingCode = 'BJSM' . strtoupper(substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'), 0, 6));
+
         $bookingId = DB::table('simple_luxury_bookings')->insertGetId([
+            'booking_code'            => $bookingCode, // <--- TAMBAHKAN INI
             'customer_name'           => $validated['customer_name'],
             'customer_email'          => $validated['customer_email'],
             'customer_phone'          => $validated['customer_phone'],
