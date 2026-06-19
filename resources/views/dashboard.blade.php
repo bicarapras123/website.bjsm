@@ -39,7 +39,7 @@
                             <tr class="bg-slate-50 text-slate-400 text-[10px] font-bold uppercase tracking-widest">
                                 <th class="p-4">Kode</th> <th class="p-4">Customer</th> <th class="p-4">Event</th>
                                 <th class="p-4">Pkg</th> <th class="p-4">Mtd</th> <th class="p-4">Total</th>
-                                <th class="p-4">Catatan</th> <th class="p-4">Status</th> <th class="p-4 text-center">PDF</th> <th class="p-4 text-center">Aksi</th>
+                                <th class="p-4">Catatan</th> <th class="p-4">Status</th> <th class="p-4">Payment</th> <th class="p-4 text-center">PDF</th> <th class="p-4 text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="text-sm text-slate-600 divide-y divide-slate-100">
@@ -62,6 +62,13 @@
                                             </select>
                                         </form>
                                     </td>
+                                    <td class="p-4">
+                                        @if($booking->payment_status == 'paid')
+                                            <span class="px-2 py-1 text-[10px] font-bold rounded-full bg-emerald-100 text-emerald-700 uppercase">Paid</span>
+                                        @else
+                                            <span class="px-2 py-1 text-[10px] font-bold rounded-full bg-rose-100 text-rose-700 uppercase">Unpaid</span>
+                                        @endif
+                                    </td>
                                     <td class="p-4 text-center">
                                         <a href="{{ route('dashboard.downloadPdf', $booking->id) }}" class="text-indigo-500 hover:text-indigo-700 transition">
                                             <svg class="w-5 h-5 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
@@ -77,7 +84,7 @@
                                     </td>
                                 </tr>
                             @empty
-                                <tr><td colspan="10" class="p-8 text-center text-slate-400">Data belum ada.</td></tr>
+                                <tr><td colspan="11" class="p-8 text-center text-slate-400">Data belum ada.</td></tr>
                             @endforelse
                         </tbody>
                     </table>
