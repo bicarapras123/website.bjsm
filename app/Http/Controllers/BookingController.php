@@ -140,46 +140,51 @@
             ]);
         
             // Ambil token Yokke
-            $token = $this->getAccessToken();
-        
-            if (!$token) {
-                Log::error('Gagal mengambil Access Token dari Yokke');
+                // Ambil token Yokke
+                $token = $this->getAccessToken();
+
+                if (!$token) {
+                    Log::error('Gagal mengambil Access Token dari Yokke');
+                    return back()->withErrors(['error' => 'Sistem pembayaran sedang gangguan.']);
+                }
+
+                // 1. Siapkan data di luar fungsi post() agar rapi dan tidak error
+                $amount = (int) $basePrice;
+
+                $payload = [
+                    "amount"   => $amount,
+                    "currency" => "IDR",
+                    "customer" => [
+                        "name"        => $validated['customer_name'],
+                        "email"       => $validated['customer_email'],
+                        "phoneNumber" => $validated['customer_phone'],
+                        "country"     => "ID",
+                        "locality"    => "Jakarta",
+                        "language"    => "en"
+                    ],
+                    "order" => [
+                        "id"           => (string)$bookingId,
+                        "disablePromo" => true
+                    ]
+                ];
+
+                // 2. Kirim request menggunakan variabel $payload
+                $response = Http::withHeaders([
+                    'Authorization' => 'Bearer ' . $token,
+                    'X-Api-Key'     => config('services.yokke.api_key'),
+                    'Content-Type'  => 'application/json',
+                ])->post(config('services.yokke.base_url') . '/gateway/IPGAPI/v1/inquiries', $payload);
+
+                // 3. Cek respon
+                if ($response->successful()) {
+                    return redirect()->away($response->json('urls.checkout'));
+                }
+
+                Log::error('Yokke Inquiry Error: ' . $response->body());
+
                 return back()->withErrors([
-                    'error' => 'Sistem pembayaran sedang gangguan.'
+                    'error' => 'Gagal terhubung ke gateway pembayaran.'
                 ]);
-            }
-        
-            // Inquiry Yokke
-            $response = Http::withHeaders([
-                'Authorization' => 'Bearer ' . $token,
-                'X-Api-Key'     => config('services.yokke.api_key'),
-                'Content-Type'  => 'application/json',
-            ])->post(config('services.yokke.base_url') . '/gateway/IPGAPI/v1/inquiries', [
-                "amount"   => (float)$basePrice,
-                "currency" => "IDR",
-                "customer" => [
-                    "name"        => $validated['customer_name'],
-                    "email"       => $validated['customer_email'],
-                    "phoneNumber" => $validated['customer_phone'],
-                    "country"     => "ID",
-                    "locality"    => "Jakarta",
-                    "language"    => "en"
-                ],
-                "order" => [
-                    "id"           => (string)$bookingId,
-                    "disablePromo" => "true"
-                ]
-            ]);
-        
-            if ($response->successful()) {
-                return redirect()->away($response->json('urls.checkout'));
-            }
-        
-            Log::error('Yokke Inquiry Error: ' . $response->body());
-        
-            return back()->withErrors([
-                'error' => 'Gagal terhubung ke gateway pembayaran.'
-            ]);
         }
 
         public function success()
