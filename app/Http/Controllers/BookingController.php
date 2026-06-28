@@ -113,102 +113,193 @@
                 ]);
             }
         
-            // Generate booking code
-            $bookingCode = 'BJSM' . strtoupper(substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'), 0, 6));
-        
-            $bookingId = DB::table('simple_luxury_bookings')->insertGetId([
-                'booking_code'            => $bookingCode,
-                'customer_name'           => $validated['customer_name'],
-                'customer_email'          => $validated['customer_email'],
-                'customer_phone'          => $validated['customer_phone'],
-                'company_or_organization' => $validated['company_or_organization'],
-                'event_title'             => $validated['event_title'],
-                'event_date'              => $validated['event_date'],
-                'start_time'              => $validated['start_time'],
-                'end_time'                => $validated['end_time'],
-                'venue_package'           => $validated['venue_package'],
-                'total_pax'               => $validated['total_pax'],
-                'room_layout'             => $validated['room_layout'],
-                'payment_method'          => $validated['payment_method'],
-                'notes'                   => $validated['notes'],
-                'grand_total'             => $basePrice,
-                'currency'                => 'IDR',
-                'status'                  => 'pending',
-                'payment_status'          => 'unpaid',
-                'created_at'              => now(),
-                'updated_at'              => now(),
-            ]);
-        
-            // Ambil token Yokke
-                // Ambil token Yokke
-                $token = $this->getAccessToken();
+// Generate booking code (lebih unik)
+$bookingCode = 'BJSM-' . strtoupper(uniqid());
 
-                if (!$token) {
-                    Log::error('Gagal mengambil Access Token dari Yokke');
-                    return back()->withErrors(['error' => 'Sistem pembayaran sedang gangguan.']);
-                }
+// Simpan booking ke database
+$bookingId = DB::table('simple_luxury_bookings')->insertGetId([
+    'booking_code'            => $bookingCode,
+    'customer_name'           => $validated['customer_name'],
+    'customer_email'          => $validated['customer_email'],
+    'customer_phone'          => $validated['customer_phone'],
+    'company_or_organization' => $validated['company_or_organization'],
+    'event_title'             => $validated['event_title'],
+    'event_date'              => $validated['event_date'],
+    'start_time'              => $validated['start_time'],
+    'end_time'                => $validated['end_time'],
+    'venue_package'           => $validated['venue_package'],
+    'total_pax'               => $validated['total_pax'],
+    'room_layout'             => $validated['room_layout'],
+    'payment_method'          => $validated['payment_method'],
+    'notes'                   => $validated['notes'],
+    'grand_total'             => $basePrice,
+    'currency'                => 'IDR',
+    'status'                  => 'pending',
+    'payment_status'          => 'unpaid',
+    'created_at'              => now(),
+    'updated_at'              => now(),
+]);
 
-                // 1. Siapkan data di luar fungsi post() agar rapi dan tidak error
-                $amount = (int) $basePrice;
+// =============================
+// Ambil Access Token Yokke
+// =============================
+$token = $this->getAccessToken();
 
-                $payload = [
-                    "amount"   => $amount,
-                    "currency" => "IDR",
-                    "customer" => [
-                        "name"        => $validated['customer_name'],
-                        "email"       => $validated['customer_email'],
-                        "phoneNumber" => $validated['customer_phone'],
-                        "country"     => "ID",
-                        "locality"    => "Jakarta",
-                        "language"    => "en"
-                    ],
-                    "order" => [
-                        "id"           => (string)$bookingId,
-                        "disablePromo" => true
-                    ]
-                ];
+if (!$token) {
+    Log::error('Yokke : Gagal mengambil access token');
 
-                // 2. Kirim request menggunakan variabel $payload
-                $response = Http::withHeaders([
-                    'Authorization' => 'Bearer ' . $token,
-                    'X-Api-Key'     => config('services.yokke.api_key'),
-                    'Content-Type'  => 'application/json',
-                ])->post(config('services.yokke.base_url') . '/gateway/IPGAPI/v1/inquiries', $payload);
+    return back()->withErrors([
+        'error' => 'Sistem pembayaran sedang tidak tersedia.'
+    ]);
+}
 
-                // 3. Cek respon
-                if ($response->successful()) {
-                    return redirect()->away($response->json('urls.checkout'));
-                }
+$amount = (int) $basePrice;
 
-                Log::error('Yokke Inquiry Error: ' . $response->body());
+// Payload sesuai dokumentasi Yokke
+$payload = [
+    "amount" => $amount,
+    "currency" => "IDR",
 
-                return back()->withErrors([
-                    'error' => 'Gagal terhubung ke gateway pembayaran.'
-                ]);
-        }
+    "referenceUrl" => url('/'),
 
-        public function success()
-        {
-            return view('booking.success');
-        }
+    "customer" => [
+        "name"        => $validated['customer_name'],
+        "email"       => $validated['customer_email'],
+        "phoneNumber" => $validated['customer_phone'],
+        "country"     => "IDN",
+        "locality"    => "Jakarta",
+        "language"    => "id"
+    ],
 
-        public function handleWebhook(Request $request)
-        {
-            $signature = $request->header('X-Signature');
-            if (!$this->isValidSignature($request, $signature)) {
-                return response()->json(['message' => 'Unauthorized'], 403);
-            }
+    "order" => [
+        "id" => $bookingCode,
 
-            $booking = SimpleLuxuryBooking::find($request->input('order_id'));
-            if ($booking) {
-                $booking->update(['payment_status' => $request->input('status')]);
-                return response()->json(['status' => 'success'], 200);
-            }
-            return response()->json(['message' => 'Booking not found'], 404);
-        }
+        "disablePromo" => true,
 
-        private function isValidSignature(Request $request, $signature)
-        {
-            return hash_equals(hash_hmac('sha256', $request->getContent(), config('services.yokke.secret_key')), (string) $signature);
-        }
+        "items" => [
+            [
+                "name" => $validated['venue_package'],
+                "quantity" => 1,
+                "amount" => $amount
+            ]
+        ]
+    ]
+];
+
+// =============================
+// LOG REQUEST
+// =============================
+Log::info('========== YOKKE REQUEST ==========');
+Log::info(json_encode($payload, JSON_PRETTY_PRINT));
+
+// =============================
+// Kirim Inquiry
+// =============================
+$response = Http::withoutVerifying()
+    ->timeout(60)
+    ->withHeaders([
+        'Authorization' => 'Bearer ' . $token,
+        'X-Api-Key'     => config('services.yokke.api_key'),
+        'Accept'        => 'application/json',
+        'Content-Type'  => 'application/json',
+    ])
+    ->post(
+        config('services.yokke.base_url') . '/gateway/IPGAPI/v1/inquiries',
+        $payload
+    );
+
+// =============================
+// LOG RESPONSE
+// =============================
+Log::info('========== YOKKE RESPONSE ==========');
+Log::info('HTTP : ' . $response->status());
+Log::info($response->body());
+
+// =============================
+// Berhasil
+// =============================
+if ($response->successful()) {
+
+    $checkoutUrl =
+        $response->json('checkoutUrl')
+        ?? $response->json('urls.checkout')
+        ?? $response->json('checkout_url');
+
+    if ($checkoutUrl) {
+        return redirect()->away($checkoutUrl);
     }
+
+    Log::error('Checkout URL tidak ditemukan.');
+    Log::error($response->body());
+
+    return back()->withErrors([
+        'error' => 'Checkout URL tidak ditemukan.'
+    ]);
+}
+
+
+// =============================
+// Jika gagal
+// =============================
+Log::error('========== YOKKE ERROR ==========');
+Log::error('HTTP : ' . $response->status());
+Log::error($response->body());
+
+if ($response->status() == 409) {
+
+    return back()->withErrors([
+        'error' => 'Order dengan kode ini sudah pernah dibuat di Yokke. Silakan ulangi transaksi.'
+    ]);
+}
+
+return back()->withErrors([
+    'error' => 'Gateway pembayaran gagal diproses.'
+]);
+
+} // <-- PENUTUP METHOD store()
+
+public function success()
+{
+    return view('booking.success');
+}
+
+public function handleWebhook(Request $request)
+{
+    $signature = $request->header('X-Signature');
+
+    if (!$this->isValidSignature($request, $signature)) {
+        return response()->json([
+            'message' => 'Unauthorized'
+        ], 403);
+    }
+
+    $booking = SimpleLuxuryBooking::find($request->input('order_id'));
+
+    if ($booking) {
+
+        $booking->update([
+            'payment_status' => $request->input('status')
+        ]);
+
+        return response()->json([
+            'status' => 'success'
+        ], 200);
+    }
+
+    return response()->json([
+        'message' => 'Booking not found'
+    ], 404);
+}
+
+private function isValidSignature(Request $request, $signature)
+{
+    return hash_equals(
+        hash_hmac(
+            'sha256',
+            $request->getContent(),
+            config('services.yokke.secret_key')
+        ),
+        (string) $signature
+    );
+}
+}
