@@ -265,9 +265,16 @@ public function success()
 
 public function handleWebhook(Request $request)
 {
+    Log::info('========== WEBHOOK MASUK ==========');
+    Log::info('Headers:', $request->headers->all());
+    Log::info('Payload:', $request->all());
+    Log::info('Raw Body: ' . $request->getContent());
+
     $signature = $request->header('X-Signature');
 
     if (!$this->isValidSignature($request, $signature)) {
+        Log::warning('Signature tidak valid');
+
         return response()->json([
             'message' => 'Unauthorized'
         ], 403);
