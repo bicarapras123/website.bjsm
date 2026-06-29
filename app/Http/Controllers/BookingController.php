@@ -272,6 +272,12 @@ public function handleWebhook(Request $request)
 
     $signature = $request->header('X-Signature');
 
+    // Tambahkan ini
+    Log::info('Signature Header:', [
+    'X-Signature' => $signature,
+    ]);
+    
+
     if (!$this->isValidSignature($request, $signature)) {
         Log::warning('Signature tidak valid');
 
