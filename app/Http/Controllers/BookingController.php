@@ -291,57 +291,87 @@ public function handleWebhook(Request $request)
     Log::info('Order ID : ' . $orderId);
     Log::info('Payment Status : ' . $status);
     
-    $booking = SimpleLuxuryBooking::where('booking_code', $orderId)->first();
-    
-    if ($booking) {
 
-        switch ($status) {
-    
-            case 'validated':
-                $booking->payment_status = 'validated';
-                break;
-    
-            case 'captured':
-                $booking->payment_status = 'paid';
-                $booking->status = 'confirmed';
-                break;
-    
-            case 'failed':
-                $booking->payment_status = 'failed';
-                $booking->status = 'cancelled';
-                break;
-    
-            case 'declined':
-                $booking->payment_status = 'declined';
-                $booking->status = 'cancelled';
-                break;
-    
-            default:
-                $booking->payment_status = $status;
-                break;
-        }
-    
-        $booking->save();
-    
-        // Ambil hash dan timestamp dari header
-        [$receivedSignature, $timestamp] = explode(';', $signature);
-    
-        // Generate validateSignature sesuai dokumentasi Yokke
-        $validateSignature = md5(
-            config('services.yokke.secret_key') .
-            $receivedSignature .
-            $timestamp
-        );
-    
-        return response()->json([
-            "status" => "ok",
-            "validateSignature" => $validateSignature
-        ], 200);
-    }
-    
+    $booking = SimpleLuxuryBooking::where('booking_code', $orderId)->first();
+
+if (!$booking) {
+
+    Log::warning('========== BOOKING TIDAK DITEMUKAN ==========');
+    Log::warning([
+        'booking_code' => $orderId,
+    ]);
+
     return response()->json([
         'message' => 'Booking not found'
     ], 404);
+}
+
+Log::info('========== BOOKING DITEMUKAN ==========');
+Log::info([
+    'id' => $booking->id,
+    'booking_code' => $booking->booking_code,
+    'payment_status' => $booking->payment_status,
+    'status' => $booking->status,
+]);
+
+switch ($status) {
+
+    case 'validated':
+        $booking->payment_status = 'validated';
+        break;
+
+    case 'captured':
+        $booking->payment_status = 'paid';
+        $booking->status = 'confirmed';
+        break;
+
+    case 'failed':
+        $booking->payment_status = 'failed';
+        $booking->status = 'cancelled';
+        break;
+
+    case 'declined':
+        $booking->payment_status = 'declined';
+        $booking->status = 'cancelled';
+        break;
+
+    default:
+        $booking->payment_status = $status;
+        break;
+}
+
+Log::info('========== SEBELUM SAVE ==========');
+Log::info([
+    'payment_status' => $booking->payment_status,
+    'status' => $booking->status,
+]);
+
+$booking->save();
+
+Log::info('========== SESUDAH SAVE ==========');
+
+$booking->refresh();
+
+Log::info([
+    'payment_status' => $booking->payment_status,
+    'status' => $booking->status,
+]);
+
+// Ambil hash dan timestamp dari header
+[$receivedSignature, $timestamp] = explode(';', $signature);
+
+// Generate validateSignature sesuai dokumentasi Yokke
+$validateSignature = md5(
+    config('services.yokke.secret_key') .
+    $receivedSignature .
+    $timestamp
+);
+
+return response()->json([
+    "status" => "ok",
+    "validateSignature" => $validateSignature
+], 200);
+
 }
 
 private function isValidSignature(Request $request, $signatureHeader)
