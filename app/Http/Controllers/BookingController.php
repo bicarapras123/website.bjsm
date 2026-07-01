@@ -271,6 +271,26 @@ public function handleWebhook(Request $request)
     Log::info('Raw Body: ' . $request->getContent());
 
     $signature = $request->header('signature');
+    
+    DB::table('webhook_logs')->insert([
+
+        'booking_code' => data_get($request->all(), 'inquiry.order.id'),
+    
+        'transaction_status' => data_get($request->all(), 'transaction.status'),
+    
+        'headers' => json_encode($request->headers->all(), JSON_PRETTY_PRINT),
+    
+        'payload' => json_encode($request->all(), JSON_PRETTY_PRINT),
+    
+        'raw_body' => $request->getContent(),
+    
+        'signature' => $signature,
+    
+        'created_at' => now(),
+    
+        'updated_at' => now(),
+    
+    ]);
 
     Log::info('Signature Header:', [
         'signature' => $signature,
