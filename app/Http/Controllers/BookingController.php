@@ -323,8 +323,19 @@ public function handleWebhook(Request $request)
     
         $booking->save();
     
+        // Ambil hash dan timestamp dari header
+        [$receivedSignature, $timestamp] = explode(';', $signature);
+    
+        // Generate validateSignature sesuai dokumentasi Yokke
+        $validateSignature = md5(
+            config('services.yokke.secret_key') .
+            $receivedSignature .
+            $timestamp
+        );
+    
         return response()->json([
-            'status' => 'success'
+            "status" => "ok",
+            "validateSignature" => $validateSignature
         ], 200);
     }
     
@@ -333,20 +344,35 @@ public function handleWebhook(Request $request)
     ], 404);
 }
 
-private function isValidSignature(Request $request, $signature)
+private function isValidSignature(Request $request, $signatureHeader)
 {
-    if (!$signature) {
+    if (empty($signatureHeader)) {
         return false;
     }
 
-    // Ambil hanya hash sebelum tanda ;
-    $signature = explode(';', $signature)[0];
+    $parts = explode(';', $signatureHeader);
+
+    if (count($parts) !== 2) {
+        Log::warning('Format Signature Yokke tidak valid');
+        return false;
+    }
+
+    [$signature, $timestamp] = $parts;
+
+    $payload = $request->getContent() . '.' . $timestamp;
 
     $generated = hash_hmac(
         'sha256',
-        $request->getContent(),
+        $payload,
         config('services.yokke.secret_key')
     );
+
+    Log::info('========== SIGNATURE DEBUG ==========');
+    Log::info([
+        'received'  => $signature,
+        'timestamp' => $timestamp,
+        'generated' => $generated,
+    ]);
 
     return hash_equals($generated, $signature);
 }
