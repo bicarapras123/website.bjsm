@@ -270,11 +270,10 @@ public function handleWebhook(Request $request)
     Log::info('Payload:', $request->all());
     Log::info('Raw Body: ' . $request->getContent());
 
-    $signature = $request->header('X-Signature');
+    $signature = $request->header('signature');
 
-    // Tambahkan ini
     Log::info('Signature Header:', [
-    'X-Signature' => $signature,
+        'signature' => $signature,
     ]);
     
 
@@ -286,19 +285,49 @@ public function handleWebhook(Request $request)
         ], 403);
     }
 
-    $booking = SimpleLuxuryBooking::find($request->input('order_id'));
-
+    $orderId = data_get($request->all(), 'inquiry.order.id');
+    $status  = data_get($request->all(), 'transaction.status');
+    
+    Log::info('Order ID : ' . $orderId);
+    Log::info('Payment Status : ' . $status);
+    
+    $booking = SimpleLuxuryBooking::where('booking_code', $orderId)->first();
+    
     if ($booking) {
 
-        $booking->update([
-            'payment_status' => $request->input('status')
-        ]);
-
+        switch ($status) {
+    
+            case 'validated':
+                $booking->payment_status = 'validated';
+                break;
+    
+            case 'captured':
+                $booking->payment_status = 'paid';
+                $booking->status = 'confirmed';
+                break;
+    
+            case 'failed':
+                $booking->payment_status = 'failed';
+                $booking->status = 'cancelled';
+                break;
+    
+            case 'declined':
+                $booking->payment_status = 'declined';
+                $booking->status = 'cancelled';
+                break;
+    
+            default:
+                $booking->payment_status = $status;
+                break;
+        }
+    
+        $booking->save();
+    
         return response()->json([
             'status' => 'success'
         ], 200);
     }
-
+    
     return response()->json([
         'message' => 'Booking not found'
     ], 404);
@@ -306,13 +335,20 @@ public function handleWebhook(Request $request)
 
 private function isValidSignature(Request $request, $signature)
 {
-    return hash_equals(
-        hash_hmac(
-            'sha256',
-            $request->getContent(),
-            config('services.yokke.secret_key')
-        ),
-        (string) $signature
+    if (!$signature) {
+        return false;
+    }
+
+    // Ambil hanya hash sebelum tanda ;
+    $signature = explode(';', $signature)[0];
+
+    $generated = hash_hmac(
+        'sha256',
+        $request->getContent(),
+        config('services.yokke.secret_key')
     );
+
+    return hash_equals($generated, $signature);
 }
+
 }
