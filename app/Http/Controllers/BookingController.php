@@ -116,6 +116,13 @@
 // Generate booking code (lebih unik)
 $bookingCode = 'BJSM-' . strtoupper(uniqid());
 
+// =============================
+// Amount untuk testing Yokke
+// =============================
+$amount = app()->environment('production')
+    ? (int) $basePrice
+    : 10000;
+
 // Simpan booking ke database
 $bookingId = DB::table('simple_luxury_bookings')->insertGetId([
     'booking_code'            => $bookingCode,
@@ -132,7 +139,7 @@ $bookingId = DB::table('simple_luxury_bookings')->insertGetId([
     'room_layout'             => $validated['room_layout'],
     'payment_method'          => $validated['payment_method'],
     'notes'                   => $validated['notes'],
-    'grand_total'             => $basePrice,
+    'grand_total'             => $amount,
     'currency'                => 'IDR',
     'status'                  => 'pending',
     'payment_status'          => 'unpaid',
@@ -153,7 +160,6 @@ if (!$token) {
     ]);
 }
 
-$amount = (int) $basePrice;
 
 // Payload sesuai dokumentasi Yokke
 $payload = [
