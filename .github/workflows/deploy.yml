@@ -28,4 +28,4 @@ jobs:
             php artisan migrate --force
             php artisan config:cache
             php artisan view:clear
-            systemctl restart nginx
+            systemctl reload apache2
