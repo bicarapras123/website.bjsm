@@ -119,12 +119,12 @@ $bookingCode = 'BJSM-' . strtoupper(uniqid());
 // =============================
 // Amount untuk testing Yokke
 // =============================
-// $amount = app()->environment('production')
-  //  ? (int) $basePrice
-    // : 10000;
+ $amount = app()->environment('production')
+    ? (int) $basePrice
+    : 10000;
 
 // Gunakan harga asli (Production)
-$amount = (int) $basePrice;
+// $amount = (int) $basePrice;
 
 // Simpan booking ke database
 $bookingId = DB::table('simple_luxury_bookings')->insertGetId([
