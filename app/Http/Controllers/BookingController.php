@@ -363,6 +363,17 @@ switch ($status) {
         $booking->payment_status = 'declined';
         $booking->status = 'cancelled';
         break;
+    
+    case 'void':
+            $booking->payment_status = 'voided';
+            $booking->status = 'cancelled';
+            
+            // Opsional: Tangkap detail hasil void dari payload
+            $voidStatus = data_get($request->all(), 'transaction.voidStatus');
+            Log::info('Void Status dari Yokke: ' . $voidStatus);
+            
+            // Logika tambahan jika voidStatus == 'accepted' atau 'declined'
+            break;
 
     default:
         $booking->payment_status = $status;
