@@ -137,6 +137,141 @@
 </div>
 
 @include('components.footer')
+    <!-- MODAL TERMS & CONDITIONS -->
+    <div x-show="openTerms" 
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md"
+         style="display: none;">
+        
+        <div @click.away="openTerms = false" 
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0 scale-95"
+             x-transition:enter-end="opacity-100 scale-100"
+             x-transition:leave="transition ease-in duration-200"
+             x-transition:leave-start="opacity-100 scale-100"
+             x-transition:leave-end="opacity-0 scale-95"
+             class="bg-white text-slate-800 w-full max-w-3xl rounded-2xl shadow-2xl flex flex-col max-h-[85vh] border border-slate-200">
+            
+
+            <!-- MODAL TERMS & CONDITIONS -->
+            <div x-show="openTerms" 
+                        class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+                        
+                        <div class="bg-white text-slate-800 w-full max-w-3xl rounded-2xl shadow-2xl flex flex-col max-h-[85vh] border border-slate-200">
+                            
+            <!-- Header -->
+            <div class="p-6 border-b border-slate-200 bg-slate-50 rounded-t-2xl">
+                
+                <h3 class="text-slate-900 font-bold text-lg uppercase tracking-wider font-luxury-title">
+                    Terms & Conditions
+                </h3>
+
+                <p class="text-[10px] text-slate-500 uppercase tracking-widest font-semibold mt-1">
+                    Syarat & Ketentuan Sewa Gedung BJSM Venue
+                </p>
+
+            <!-- NEW NOTE -->
+            <div class="mt-4">
+                <div class="flex items-start gap-3 p-3 sm:p-4 rounded-xl border border-amber-200 bg-amber-50">
+                    
+                    <!-- Icon -->
+                    <div class="mt-0.5 text-amber-600">
+                        ⚠️
+                    </div>
+
+                    <!-- Text -->
+                    <div class="text-[11px] sm:text-xs text-amber-800 leading-relaxed font-medium">
+                        <span class="font-semibold uppercase tracking-wide">
+                            Important Notice:
+                        </span>
+                        Seluruh pembayaran yang telah dilakukan, termasuk Down Payment maupun pelunasan,
+                        <span class="font-semibold">
+                            bersifat final dan tidak dapat dikembalikan (non-refundable)
+                        </span>
+                        dalam kondisi apapun.
+                    </div>
+
+                </div>
+            </div>
+
+            </div>
+
+                <!-- Modal Content -->
+                <div class="p-6 sm:p-8 overflow-y-auto space-y-6 text-xs sm:text-sm text-slate-600 font-light leading-relaxed">
+                    <section class="space-y-2">
+                        <h5 class="font-bold text-slate-900 uppercase tracking-wider">1. Definisi & Ketentuan Umum</h5>
+                        <p>Perjanjian sewa ini berlaku sah antara pihak manajemen <strong>BJSM Venue</strong> (selanjutnya disebut "Pengelola") dan badan hukum atau perorangan yang melakukan pemesanan (selanjutnya disebut "Penyewa"). Dengan melakukan pembayaran uang muka, Penyewa dianggap telah membaca, memahami, dan menyetujui seluruh klausul ini.</p>
+                    </section>
+                    <section class="space-y-2">
+                        <h5 class="font-bold text-slate-900 uppercase tracking-wider">2. Prosedur Reservasi & Pelunasan</h5>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>Pemesanan tanggal (*booking*) baru dinyatakan mengikat secara sistem setelah Penyewa membayarkan Uang Muka (*Down Payment*) minimal sebesar <strong>30%</strong> dari total nilai kontrak sewa.</li>
+                            <li>Pelunasan sisa pembayaran wajib diselesaikan selambat-lambatnya <strong>14 (empat belas) hari kerja</strong> sebelum hari pelaksanaan acara.</li>
+                            <li>Apabila pelunasan tidak dipenuhi dalam batas waktu tersebut, Pengelola berhak membatalkan pesanan secara sepihak tanpa kewajiban mengembalikan dana yang telah masuk.</li>
+                        </ul>
+                    </section>
+                    <section class="space-y-2">
+                        <h5 class="font-bold text-slate-900 uppercase tracking-wider">3. Uang Jaminan Kerusakan (*Security Deposit*)</h5>
+                        <p>Penyewa wajib menyetorkan *Security Deposit* (nilai disesuaikan dengan jenis paket/acara) bersamaan dengan pembayaran pelunasan. Uang jaminan ini akan dikembalikan secara penuh maksimal <strong>7 (tujuh) hari kerja</strong> setelah acara selesai, dengan catatan tidak ditemukan kerusakan asset atau pelanggaran aturan operasional oleh Penyewa maupun vendor terkait.</p>
+                    </section>
+                    <section class="space-y-2">
+                        <h5 class="font-bold text-slate-900 uppercase tracking-wider">4. Pembatalan & Perubahan Jadwal (*Reschedule*)</h5>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li><strong>Pembatalan Sepihak:</strong> Jika pembatalan dilakukan dalam waktu kurang dari 30 hari sebelum acara, seluruh dana yang telah masuk dinyatakan hangus dan tidak dapat dikembalikan (*non-refundable*).</li>
+                            <li><strong>Perubahan Jadwal (*Reschedule*):</strong> Pengajuan perubahan tanggal wajib disampaikan secara tertulis maksimal <strong>45 hari sebelum acara</strong>, dan bergantung sepenuhnya pada ketersediaan slot kosong. Perubahan jadwal dapat dikenakan biaya administrasi tambahan sesuai kebijakan manajemen.</li>
+                        </ul>
+                    </section>
+                    <section class="space-y-2">
+                        <h5 class="font-bold text-slate-900 uppercase tracking-wider">5. Durasi Penggunaan & Aturan Waktu</h5>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>Waktu sewa standar adalah sesuai durasi paket yang dipilih (termasuk pelaksanaan acara).</li>
+                            <li>Waktu untuk persiapan dekorasi (*loading*) dan pembongkaran (*unloading*) diatur secara khusus oleh pihak tim teknis gedung.</li>
+                            <li>Kelebihan waktu (*overtime*) penggunaan ruangan akan dikenakan biaya tambahan per jam sesuai tarif premium yang berlaku.</li>
+                        </ul>
+                    </section>
+                    <section class="space-y-2">
+                        <h5 class="font-bold text-slate-900 uppercase tracking-wider">6. Kebijakan Vendor Luar Rekanan</h5>
+                        <p>Pengelola memiliki daftar vendor rekanan resmi (katering, dekorasi, dokumentasi, sound/lighting). Apabila Penyewa menggunakan jasa vendor dari luar rekanan wajib:</p>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>Membayar biaya kompensasi operasional (*charge vendor luar*) sesuai klasifikasi tarif BJSM Venue.</li>
+                            <li>Vendor luar wajib menghadiri *Technical Meeting* resmi dan mematuhi batas daya listrik serta regulasi pemasangan dekorasi yang ditetapkan teknisi gedung.</li>
+                        </ul>
+                    </section>
+                    <section class="space-y-2">
+                        <h5 class="font-bold text-slate-900 uppercase tracking-wider">7. Batasan Kapasitas & Ketertiban</h5>
+                        <p>Jumlah tamu dan kru tidak boleh melebihi batas kapasitas maksimal aman ruangan yang telah disepakati untuk menjaga keselamatan bersama. Penyewa beserta pihak ketiga (vendor/tamu) dilarang keras membawa senjata api, senjata tajam, obat-obatan terlarang, serta melakukan aktivitas yang melanggar hukum RI di lingkungan BJSM Venue.</p>
+                    </section>
+                    <section class="space-y-2">
+                        <h5 class="font-bold text-slate-900 uppercase tracking-wider">8. Tanggung Jawab & Force Majeure</h5>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>Penyewa bertanggung jawab penuh atas hilangnya barang pribadi milik tamu undangan atau kru selama acara berlangsung.</li>
+                            <li>Pihak BJSM Venue dibebaskan dari tuntutan hukum jika terjadi kegagalan atau penundaan acara yang disebabkan oleh keadaan darurat di luar kendali manusia (*Force Majeure*), termasuk namun tidak terbatas pada bencana alam, kebakaran, huru-hara, pemadaman listrik massal kota, atau kebijakan pembatasan resmi dari pemerintah.</li>
+                        </ul>
+                    </section>
+                </div>
+
+                <!-- Footer -->
+                <div class="p-5 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-b-2xl">
+                    <label class="flex items-center space-x-3 cursor-pointer select-none w-full sm:w-auto">
+                        <input type="checkbox" x-model="isAgreed" class="w-5 h-5 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500/30 accent-emerald-600 transition duration-150">
+                        <span class="text-xs sm:text-sm text-slate-700 font-medium">Saya menyetujui seluruh syarat & ketentuan di atas</span>
+                    </label>
+
+                    <button @click="if(isAgreed) { openTerms = false } else { alert('Mohon centang kotak persetujuan terlebih dahulu untuk melanjutkan.') }" 
+                            :class="isAgreed ? 'bg-emerald-700 hover:bg-emerald-600 text-white cursor-pointer' : 'bg-slate-300 text-slate-500 cursor-not-allowed'"
+                            class="w-full sm:w-auto font-bold text-xs uppercase tracking-widest px-6 py-3.5 rounded-xl transition-all duration-300 shadow">
+                        Saya Mengerti & Setuju
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
 
 <script>
