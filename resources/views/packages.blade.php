@@ -52,83 +52,237 @@
         </div>
     </section>
 
- <!-- PACKAGES SECTION -->
+<!-- PACKAGES SECTION -->
 <section id="packages" class="py-24 sm:py-36 bg-slate-100 scroll-mt-20">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
         <div class="text-center max-w-3xl mx-auto mb-16 sm:mb-24" data-aos="fade-up">
-            <span class="text-xs font-bold text-emerald-700 uppercase tracking-[0.25em] block mb-3">All-In Corporate Pricing</span>
-            <h2 class="text-2xl sm:text-5xl font-black text-slate-900 uppercase tracking-wider font-luxury-title">Paket Layanan Rapat</h2>
+            <span class="text-xs font-bold text-emerald-700 uppercase tracking-[0.25em] block mb-3">
+                All-In Corporate Pricing
+            </span>
+
+            <h2 class="text-2xl sm:text-5xl font-black text-slate-900 uppercase tracking-wider font-luxury-title">
+                Paket Layanan Meeting
+            </h2>
+
             <div class="h-[2px] w-20 bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto mt-6"></div>
         </div>
 
-        <div class="space-y-6">
-            
-            <!-- 1. PAKET SMALL MEETING -->
-            <div class="border border-slate-200 rounded-2xl p-6 sm:p-8 bg-white shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-emerald-600/30 transition duration-300 relative group" data-aos="fade-up" data-aos-delay="100">
-                <div class="space-y-2">
-                    <h4 class="text-slate-900 font-bold text-lg uppercase tracking-wider font-luxury-title group-hover:text-emerald-700 transition">Paket Small Meeting</h4>
-                    <p class="text-slate-500 text-xs font-light max-w-xl">Dioptimalkan secara eksklusif untuk kebutuhan rapat koordinasi internal, presentasi proyek strategis, atau diskusi direksi skala kecil dengan fleksibilitas layout ruang kerja.</p>
-                </div>
-                <div class="text-left md:text-right shrink-0 border-t md:border-t-0 md:border-l border-slate-100 pt-4 md:pt-0 md:pl-8 min-w-[160px]">
-                    <span class="block text-slate-400 text-[9px] font-bold uppercase tracking-widest">Investasi Paket</span>
-                    <span class="text-xl font-bold text-emerald-800 font-luxury-title">Rp 5.000.000</span>
-                </div>
-            </div>
+        <div class="space-y-5">
 
-            <!-- 2. PAKET HALF DAY MEETING -->
-            <div class="border border-slate-200 rounded-2xl p-6 sm:p-8 bg-white shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-emerald-600/30 transition duration-300 relative group" data-aos="fade-up" data-aos-delay="150">
-                <div class="space-y-2">
-                    <h4 class="text-slate-900 font-bold text-lg uppercase tracking-wider font-luxury-title group-hover:text-emerald-700 transition">Paket Half Day Meeting</h4>
-                    <p class="text-slate-500 text-xs font-light max-w-xl">Alokasi sewa ruangan rapat terintegrasi dengan durasi maksimal hingga 4 Jam. Sudah termasuk penyediaan hospitality session berupa 1x Coffee Break premium berisikan aneka pastry segar pilihan.</p>
-                </div>
-                <div class="text-left md:text-right shrink-0 border-t md:border-t-0 md:border-l border-slate-100 pt-4 md:pt-0 md:pl-8 min-w-[160px]">
-                    <span class="block text-slate-400 text-[9px] font-bold uppercase tracking-widest">Investasi Paket</span>
-                    <span class="text-xl font-bold text-emerald-800 font-luxury-title">Rp 10.000.000</span>
-                </div>
-            </div>
+            <!-- Small Meeting -->
+            <a href="{{ route('booking.create') }}" class="block">
+                <div class="border border-slate-200 rounded-2xl p-6 bg-white shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center hover:border-emerald-500 hover:-translate-y-1 transition-all duration-300">
 
-            <!-- 3. PAKET FULL DAY MEETING -->
-            <div class="border-2 border-amber-500 rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 text-white shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative" data-aos="fade-up" data-aos-delay="200">
-                <span class="absolute -top-3 left-6 bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 text-[9px] font-black uppercase px-4 py-1 rounded-full tracking-widest shadow-md">Most Popular Option</span>
-                <div class="space-y-2">
-                    <h4 class="text-amber-400 font-bold text-lg uppercase tracking-wider font-luxury-title">Paket Full Day Meeting</h4>
-                    <p class="text-slate-300 text-xs font-light max-w-xl">Solusi rapat korporat penuh sepanjang hari dengan durasi hingga 8 Jam. Dirancang komprehensif berfasilitas kuliner lengkap mencakup sajian 2x Coffee Break serta 1x Lunch / Dinner tipe prasmanan (Buffet).</p>
-                </div>
-                <div class="text-left md:text-right shrink-0 border-t border-white/5 md:border-t-0 md:border-l md:border-white/10 pt-4 md:pt-0 md:pl-8 min-w-[160px]">
-                    <span class="block text-amber-400 text-[9px] font-bold uppercase tracking-widest">Investasi Paket</span>
-                    <span class="text-xl font-bold text-amber-400 font-luxury-title">Rp 15.000.000</span>
-                </div>
-            </div>
+                    <div>
+                        <h4 class="font-bold text-lg uppercase font-luxury-title">
+                            Small Meeting
+                        </h4>
 
-            <!-- 4. PAKET FULLBOARD MEETING -->
-            <div class="border border-slate-200 rounded-2xl p-6 sm:p-8 bg-white shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-emerald-600/30 transition duration-300 relative group" data-aos="fade-up" data-aos-delay="250">
-                <div class="space-y-2">
-                    <h4 class="text-slate-900 font-bold text-lg uppercase tracking-wider font-luxury-title group-hover:text-emerald-700 transition">Paket Fullboard Meeting</h4>
-                    <p class="text-slate-500 text-xs font-light max-w-xl">Paket integrasi rapat intensif berskala masif. Menggabungkan penyediaan fasilitas ruang pertemuan utama, konsumsi F&B hospitality harian komplit, serta integrasi pemesanan kamar menginap untuk peserta.</p>
-                </div>
-                <div class="text-left md:text-right shrink-0 border-t md:border-t-0 md:border-l border-slate-100 pt-4 md:pt-0 md:pl-8 min-w-[160px]">
-                    <span class="block text-slate-400 text-[9px] font-bold uppercase tracking-widest">Investasi Paket</span>
-                    <span class="text-xl font-bold text-emerald-800 font-luxury-title">Rp 20.000.000</span>
-                </div>
-            </div>
+                        <p class="text-sm text-slate-500 mt-2">
+                            Durasi : <strong>2 Jam</strong>
+                        </p>
+                    </div>
 
-            <!-- 5. PAKET CONVENTION CENTRE (CUSTOM) -->
-            <div class="border border-slate-200 rounded-2xl p-6 sm:p-8 bg-white shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-amber-500/30 transition duration-300 relative group" data-aos="fade-up" data-aos-delay="300">
-                <div class="space-y-2">
-                    <h4 class="text-slate-900 font-bold text-lg uppercase tracking-wider font-luxury-title group-hover:text-amber-600 transition">Paket Convention Centre (Custom)</h4>
-                    <p class="text-slate-500 text-xs font-light max-w-xl">Penyewaan hall utama skala megah untuk penyelenggaraan agenda masif seperti wisuda, pameran, konser, ataupun konfigurasi tata panggung berskala besar.</p>
-                </div>
-                <div class="text-left md:text-right shrink-0 border-t md:border-t-0 md:border-l border-slate-100 pt-4 md:pt-0 md:pl-8 min-w-[160px] bg-amber-50/40 p-4 rounded-xl md:bg-transparent md:p-0">
-                    <span class="block text-amber-600 text-[9px] font-bold uppercase tracking-widest">Skema Investasi</span>
-                    <span class="text-lg font-bold text-amber-600 font-luxury-title uppercase tracking-wide">Hubungi Admin</span>
-                </div>
-            </div>
+                    <div class="text-right mt-4 md:mt-0">
+                        <span class="text-xs uppercase text-slate-400">
+                            Mulai Dari
+                        </span>
 
-        </div> 
-        
-        <p class="text-center text-[11px] text-slate-400 italic mt-8">
-            * Catatan: Harga di atas merupakan harga dasar penawaran sewa ruangan (belum termasuk pengenaan pajak PPN pemerintah).
+                        <h3 class="text-xl font-bold text-emerald-700">
+                            Rp 5.000.000
+                        </h3>
+                    </div>
+
+                </div>
+            </a>
+
+            <!-- Half Day -->
+            <a href="{{ route('booking.create') }}" class="block">
+                <div class="border border-slate-200 rounded-2xl p-6 bg-white shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center hover:border-emerald-500 hover:-translate-y-1 transition-all duration-300">
+
+                    <div>
+                        <h4 class="font-bold text-lg uppercase font-luxury-title">
+                            Half Day Meeting
+                        </h4>
+
+                        <p class="text-sm text-slate-500 mt-2">
+                            Durasi : <strong>4 Jam</strong>
+                        </p>
+                    </div>
+
+                    <div class="text-right mt-4 md:mt-0">
+                        <span class="text-xs uppercase text-slate-400">Mulai Dari</span>
+                        <h3 class="text-xl font-bold text-emerald-700">Rp 10.000.000</h3>
+                    </div>
+
+                </div>
+            </a>
+
+            <!-- Full Day -->
+            <a href="{{ route('booking.create') }}" class="block">
+                <div class="border-2 border-amber-500 rounded-2xl p-6 bg-gradient-to-r from-slate-900 to-slate-950 text-white shadow-2xl flex flex-col md:flex-row justify-between items-start md:items-center relative hover:-translate-y-1 transition">
+
+                    <span class="absolute -top-3 left-6 bg-amber-500 text-black text-xs font-bold px-4 py-1 rounded-full">
+                        Most Popular
+                    </span>
+
+                    <div>
+                        <h4 class="font-bold text-lg uppercase text-amber-400 font-luxury-title">
+                            Full Day Meeting
+                        </h4>
+
+                        <p class="text-sm text-slate-300 mt-2">
+                            Durasi : <strong>8 Jam</strong>
+                        </p>
+                    </div>
+
+                    <div class="text-right mt-4 md:mt-0">
+                        <span class="text-xs uppercase text-amber-300">Mulai Dari</span>
+                        <h3 class="text-xl font-bold text-amber-400">Rp 15.000.000</h3>
+                    </div>
+
+                </div>
+            </a>
+
+            <!-- Fullboard -->
+            <a href="{{ route('booking.create') }}" class="block">
+                <div class="border border-slate-200 rounded-2xl p-6 bg-white shadow-xl flex justify-between items-center hover:border-emerald-500 transition">
+                    <div>
+                        <h4 class="font-bold text-lg uppercase font-luxury-title">Fullboard Meeting</h4>
+                        <p class="text-sm text-slate-500 mt-2">Durasi : <strong>24 Jam</strong></p>
+                    </div>
+
+                    <div class="text-right">
+                        <span class="text-xs uppercase text-slate-400">Mulai Dari</span>
+                        <h3 class="text-xl font-bold text-emerald-700">Rp 20.000.000</h3>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Executive -->
+            <a href="{{ route('booking.create') }}" class="block">
+                <div class="border border-slate-200 rounded-2xl p-6 bg-white shadow-xl flex justify-between items-center hover:border-emerald-500 transition">
+                    <div>
+                        <h4 class="font-bold text-lg uppercase font-luxury-title">Executive Meeting</h4>
+                        <p class="text-sm text-slate-500 mt-2">Durasi : <strong>Flexible</strong></p>
+                    </div>
+
+                    <div class="text-right">
+                        <span class="text-xs uppercase text-slate-400">Mulai Dari</span>
+                        <h3 class="text-xl font-bold text-emerald-700">Rp 25.000.000</h3>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Premium -->
+            <a href="{{ route('booking.create') }}" class="block">
+                <div class="border border-slate-200 rounded-2xl p-6 bg-white shadow-xl flex justify-between items-center hover:border-emerald-500 transition">
+                    <div>
+                        <h4 class="font-bold text-lg uppercase font-luxury-title">Premium Meeting</h4>
+                        <p class="text-sm text-slate-500 mt-2">Durasi : <strong>Flexible</strong></p>
+                    </div>
+
+                    <div class="text-right">
+                        <span class="text-xs uppercase text-slate-400">Mulai Dari</span>
+                        <h3 class="text-xl font-bold text-emerald-700">Rp 30.000.000</h3>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Corporate -->
+            <a href="{{ route('booking.create') }}" class="block">
+                <div class="border border-slate-200 rounded-2xl p-6 bg-white shadow-xl flex justify-between items-center hover:border-emerald-500 transition">
+                    <div>
+                        <h4 class="font-bold text-lg uppercase font-luxury-title">Corporate Meeting</h4>
+                        <p class="text-sm text-slate-500 mt-2">Durasi : <strong>Flexible</strong></p>
+                    </div>
+
+                    <div class="text-right">
+                        <span class="text-xs uppercase text-slate-400">Mulai Dari</span>
+                        <h3 class="text-xl font-bold text-emerald-700">Rp 35.000.000</h3>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Grand Ballroom -->
+            <a href="{{ route('booking.create') }}" class="block">
+                <div class="border border-slate-200 rounded-2xl p-6 bg-white shadow-xl flex justify-between items-center hover:border-emerald-500 transition">
+                    <div>
+                        <h4 class="font-bold text-lg uppercase font-luxury-title">Grand Ballroom</h4>
+                        <p class="text-sm text-slate-500 mt-2">Durasi : <strong>Flexible</strong></p>
+                    </div>
+
+                    <div class="text-right">
+                        <span class="text-xs uppercase text-slate-400">Mulai Dari</span>
+                        <h3 class="text-xl font-bold text-emerald-700">Rp 40.000.000</h3>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Convention Centre -->
+            <a href="{{ route('booking.create') }}" class="block">
+                <div class="border border-slate-200 rounded-2xl p-6 bg-white shadow-xl flex justify-between items-center hover:border-emerald-500 transition">
+                    <div>
+                        <h4 class="font-bold text-lg uppercase font-luxury-title">Convention Centre</h4>
+                        <p class="text-sm text-slate-500 mt-2">Durasi : <strong>Flexible</strong></p>
+                    </div>
+
+                    <div class="text-right">
+                        <span class="text-xs uppercase text-slate-400">Mulai Dari</span>
+                        <h3 class="text-xl font-bold text-emerald-700">Rp 45.000.000</h3>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Luxury Convention -->
+            <a href="{{ route('booking.create') }}" class="block">
+                <div class="border border-slate-200 rounded-2xl p-6 bg-white shadow-xl flex justify-between items-center hover:border-emerald-500 transition">
+                    <div>
+                        <h4 class="font-bold text-lg uppercase font-luxury-title">Luxury Convention</h4>
+                        <p class="text-sm text-slate-500 mt-2">Durasi : <strong>Flexible</strong></p>
+                    </div>
+
+                    <div class="text-right">
+                        <span class="text-xs uppercase text-slate-400">Mulai Dari</span>
+                        <h3 class="text-xl font-bold text-emerald-700">Rp 50.000.000</h3>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Custom -->
+            <a href="{{ route('booking.create') }}" class="block">
+                <div class="border-2 border-dashed border-amber-400 rounded-2xl p-6 bg-amber-50 shadow-xl flex justify-between items-center hover:border-amber-500 transition">
+
+                    <div>
+                        <h4 class="font-bold text-lg uppercase text-amber-700 font-luxury-title">
+                            Custom Package
+                        </h4>
+
+                        <p class="text-sm text-slate-600 mt-2">
+                            Durasi : <strong>Flexible</strong>
+                        </p>
+                    </div>
+
+                    <div class="text-right">
+                        <span class="text-xs uppercase text-amber-600">
+                            Harga Mulai
+                        </span>
+
+                        <h3 class="text-xl font-bold text-amber-700">
+                            > Rp 50.000.000
+                        </h3>
+                    </div>
+
+                </div>
+            </a>
+
+        </div>
+
+        <p class="text-center text-xs text-slate-400 italic mt-8">
+            * Harga merupakan harga dasar paket meeting dan dapat berubah sesuai kebutuhan serta konfigurasi acara.
         </p>
+
     </div>
 </section>
 
